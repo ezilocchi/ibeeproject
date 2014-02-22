@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : ModalPopupUbicacion
+    Created on : 28-ago-2009, 19:20:56
+    Author     : farias.facundo
+-->
+
+<div xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component"
+     xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:m="http://code.google.com/p/gmaps4jsf/">
+    <f:subview id="ModalPopupUbicacion">
+        <html id="outputHtml1">
+            <head id="outputHead1">
+                <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+                <f:verbatim>
+                    <![CDATA[
+                    <script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAbSzQ9VpZQwenDnv2GOzjYBS0mfbAkUOhKCwVmgIpLk6yLG9CCBReWtkTVanbYdV5orUhEeUGOvaLsA">
+                    </script>
+                    ]]>
+                </f:verbatim>
+            </head>
+            <body id="outputBody1" style="-rave-layout: grid" onunload="GUnload()">
+                <ice:form id="form1">
+                    <ice:panelPopup binding="#{ModalPopupUbicacion.panelPopup1}" draggable="true" id="panelPopup1" rendered="#{ModalPopupUbicacion.panelPopup1Bean.showDraggablePanel}"
+                                    styleClass="corePopup" visible="#{ModalPopupUbicacion.panelPopup1Bean.showModalPanel}" modal="true">
+                        <f:facet name="header">
+                            <ice:panelGroup styleClass="popupHeaderWrapper">
+                                <ice:outputText id="outputText1" value="#{ModalPopupUbicacion.title}" styleClass="popupHeaderText"/>
+                                <ice:commandButton id="modalPnlCloseBtn" type="button"
+                                                   image="resources/rime/css-images/cal_off.gif" styleClass="popupHeaderImage"
+                                                   title="Close Popup" alt="Close" action="#{ModalPopupUbicacion.cerrarPopup}"/>
+                            </ice:panelGroup>
+                        </f:facet>
+                        <f:facet name="body">
+                            <ice:panelGrid id="panelGrid2" styleClass="popupTextBody">
+                                <m:map width="500px" height="430px" autoReshape="true" type="G_NORMAL_MAP" renderOnWindowLoad="false"
+                                       jsVariable="map1" zoom="4" latitude="-31" longitude="-64">
+                                    <m:mapControl id="largectrl" name="GLargeMapControl" />
+                                    <m:marker latitude="#{ModalPopupUbicacion.latitude}" longitude="#{ModalPopupUbicacion.longitude}" jsVariable="marker1" draggable="true">
+                                        <m:eventListener eventName="dragend" jsFunction="marker1DragHandler"/>
+                                    </m:marker>
+                                </m:map>
+                                <ice:commandButton value="El punto seleccionado es: "/>
+                                <ice:outputText value="First place (lat, lng): (#{ModalPopupUbicacion.latitude}, #{ModalPopupUbicacion.longitude})"/>
+                                <ice:commandButton value="Guardar la ubicacion seleccionada" action="#{ModalPopupUbicacion.aceptaPopup}"/>
+                                <f:verbatim>
+                                    <script>
+                                        function ModalPopupActualizacionClima(latlng) {}
+                                    </script>
+                                </f:verbatim>
+                            </ice:panelGrid>
+                        </f:facet>
+                    </ice:panelPopup>
+                </ice:form>
+            </body>
+        </html>
+    </f:subview>
+</div>

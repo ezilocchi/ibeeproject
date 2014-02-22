@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : ModalPopupMiembrosFamilia
+    Created on : 19-sep-2009, 19:50:55
+    Author     : burni.matias
+-->
+
+<div xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:jsp="http://java.sun.com/JSP/Page" >
+    <f:subview id="ModalPopupMiembrosFamilia">
+
+        <html id="outputHtml1">
+            <head id="outputHead1">
+            </head>
+            <body id="outputBody1" style="-rave-layout: grid">
+                <ice:form id="formMiembroFam">
+                    <ice:panelPopup binding="#{ModalPopupMiembrosFamilia.panelPopup1}" draggable="true" id="panelPopup1" rendered="#{ModalPopupMiembrosFamilia.panelPopup1Bean.showDraggablePanel}"
+                                    style="width:600px;height:600px;"  styleClass="corePopup" visible="#{ModalPopupMiembrosFamilia.panelPopup1Bean.showModalPanel}" modal="true">
+                        <f:facet name="header">
+                            <ice:panelGroup styleClass="popupHeaderWrapper">
+                                <ice:outputText value="#{ModalPopupMiembrosFamilia.title}" styleClass="popupHeaderText"/>
+                                <ice:commandButton type="button"
+                                                   image="resources/rime/css-images/cal_off.gif" styleClass="popupHeaderImage" immediate="true"
+                                                   title="Close Popup" alt="Close" action="#{ModalPopupMiembrosFamilia.cerrarPopup}"/>
+                            </ice:panelGroup>
+                        </f:facet>
+
+                        <f:facet name="body">
+                            <ice:panelGrid id="idPanelPrincipal" styleClass="popupTextBody2">
+                                <div>
+                                    <ice:dataPaginator id="dataScrollMiembroFam"
+                                                       for="DataTableMiembroFamiliaPopUp"
+                                                       paginator="true"
+                                                       fastStep="3"
+                                                       paginatorMaxPages="5" styleClass="floatLeft">
+                                        <f:facet name="first">
+                                            <ice:graphicImage
+                                                url="./xmlhttp/css/rime/css-images/arrow-first.gif"
+                                                style="border:none;"
+                                                title="First Page"/>
+                                        </f:facet>
+                                        <f:facet name="last">
+                                            <ice:graphicImage
+                                                url="./xmlhttp/css/rime/css-images/arrow-last.gif"
+                                                style="border:none;"
+                                                title="Last Page"/>
+                                        </f:facet>
+                                        <f:facet name="previous">
+                                            <ice:graphicImage
+                                                url="./xmlhttp/css/rime/css-images/arrow-previous.gif"
+                                                style="border:none;"
+                                                title="Previous Page"/>
+                                        </f:facet>
+                                        <f:facet name="next">
+                                            <ice:graphicImage
+                                                url="./xmlhttp/css/rime/css-images/arrow-next.gif"
+                                                style="border:none;"
+                                                title="Next Page"/>
+                                        </f:facet>
+                                        <f:facet name="fastforward">
+                                            <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-ff.gif"
+                                                              style="border:none;"
+                                                              title="Fast Forward"/>
+                                        </f:facet>
+                                        <f:facet name="fastrewind">
+                                            <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-fr.gif"
+                                                              style="border:none;"
+                                                              title="Fast Backwards"/>
+                                        </f:facet>
+                                    </ice:dataPaginator>
+                                </div>
+                                <tr>
+                                    <ice:dataTable id="DataTableMiembroFamiliaPopUp"  value="#{ModalPopupMiembrosFamilia.utilMiembrosFamilia}" var="miembros" width="100%" rows="4">
+                                        <ice:column id="column1">
+                                            <ice:outputText id="outputText1" value="#{miembros.miembroFamilia['idMiembroFamilia']}"/>
+                                            <f:facet name="header">
+                                                <ice:outputText id="head1" value="Nro Miembro"/>
+                                            </f:facet>
+                                        </ice:column>
+                                        <ice:column id="column2">
+                                            <ice:outputText id="outputText2" value="#{miembros.miembroFamilia['denominacion']}"/>
+                                            <f:facet name="header">
+                                                <ice:outputText id="head2" value="Denominacion"/>
+                                            </f:facet>
+                                        </ice:column>
+                                        <ice:column id="column3">
+                                            <ice:outputText id="outputText3" value="#{miembros.numeroFamilia}"/>
+                                            <f:facet name="header">
+                                                <ice:outputText id="head3" value="Nro Familia"/>
+                                            </f:facet>
+                                        </ice:column>
+                                        <ice:column id="column4">
+                                            <ice:outputText id="outputText4" value="#{miembros.miembroFamilia['tipoAbeja'].denominacion}"/>
+                                            <f:facet name="header">
+                                                <ice:outputText id="head4" value="Tipo Abeja"/>
+                                            </f:facet>
+                                        </ice:column>
+                                        <ice:column id="column5">
+                                            <ice:selectBooleanCheckbox id="selectCheck" value="#{miembros.seleccionado}" partialSubmit="true"/>
+                                            <f:facet name="header">
+                                                <ice:outputText id="head5" value="Seleccionado"/>
+                                            </f:facet>
+                                        </ice:column>
+
+                                        <ice:column id="column6" styleClass="columnaAciones">
+                                            <ice:commandButton action="#{ModalPopupMiembrosFamilia.modif_action}" id="btn_modif" styleClass="buttonEdit" title="editar" value="Modificar"/>
+                                            <ice:commandButton action="#{ModalPopupMiembrosFamilia.delete_action}" id="btn_elim" styleClass="buttonDelete" title="eliminar" value="Eliminar"/>
+                                            <ice:commandButton action="#{ModalPopupMiembrosFamilia.query_action}" id="btn_ver" styleClass="buttonInfo" title="consultar" value="Consultar"/>
+                                            <f:param value="#{miembros}" binding="#{ModalPopupMiembrosFamilia.parametro}"></f:param>
+                                            <f:facet name="header">
+                                                <ice:outputText id="outputText5" value="Acciones"/>
+                                            </f:facet>
+                                        </ice:column>
+
+                                    </ice:dataTable>
+                                </tr>
+                                <br/>
+                                <ice:commandButton value="Nuevo Miembro de Familia" styleClass="buttonAdd floatRight" action="#{ModalPopupMiembrosFamilia.nuevoMiembro}"/>
+                                <br/>
+                                <div>
+                                    <br/>
+                                    <ice:commandButton id="cancel" value="Cancelar" styleClass="floatRight buttonCancel" immediate="true"
+                                                       action="#{ModalPopupMiembrosFamilia.cancela}" />
+                                    <ice:commandButton id="accept" value="Aceptar" styleClass="floatRight buttonAccept" immediate="true"
+                                                       action="#{ModalPopupMiembrosFamilia.acepta}" />
+                                </div>
+                            </ice:panelGrid>
+                        </f:facet>
+                    </ice:panelPopup>
+                </ice:form>
+            </body>
+        </html>
+
+    </f:subview>
+</div>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : modificarCargo
+    Created on : 06/03/2010, 15:43:34
+    Author     : burni.matias
+-->
+<div style="-rave-layout: grid; " xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="modificarCargo">
+        <table class="abm" width="100%">
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Nro Cargo"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputIdCargo" readonly="true" styleClass="abmInput" value="#{modificarCargo.cargo.idCargo}"/>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Denominaci&#243;n (*)"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputDenominacion" readonly="true" styleClass="abmInput" value="#{modificarCargo.cargo.denominacion}"/>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td class="title" style="height: 17px">
+                    <ice:outputText value="Descripci&#243;n (*)"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputDesc" readonly="true" styleClass="abmInput" value="#{modificarCargo.cargo.descripcion}"/>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <ice:panelCollapsible expanded="true" id="panelC" styleClass="o_folding_panel">
+                        <f:facet name="header">
+                            <ice:panelGroup>
+                                <ice:outputText id="formHeaderCarg" value="Consultar Recursos"/>
+                            </ice:panelGroup>
+                        </f:facet>
+                        <ice:panelGroup style="vertical-align: top;">
+                            <!-- Data Table -->
+                            <ice:dataTable columnClasses="rowTable" headerClass="hdrTable" id="dataTableEnf" rowClasses="rowTable" rows="24" title="Cargos"
+                                value="#{modificarCargo.recursoXCargos}" var="recursoXCargos" width="100%">
+                                <ice:column id="col1">
+                                    <ice:outputText id="outputText1" value="#{recursoXCargos.recurso.nombre}"/>
+                                    <f:facet name="header">
+                                        <ice:outputText id="outputText2" value="Nombre Recurso"/>
+                                    </f:facet>
+                                </ice:column>
+                                <ice:column id="col2">
+                                    <ice:selectBooleanCheckbox id="selectCheck" value="#{recursoXCargos.habilitado}"/>
+                                    <f:facet name="header">
+                                        <ice:outputText id="head5" value="Habilitar"/>
+                                    </f:facet>
+                                </ice:column>
+                            </ice:dataTable>
+                        </ice:panelGroup>
+                    </ice:panelCollapsible>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="aceptar">
+                    <ice:commandButton action="#{modificarCargo.actionAceptar}" id="aceptar" image="/resources/icons/buttons/editar.png" type="submit" value="Aceptar"/>
+                </td>
+                <td>
+                    <ice:commandButton action="#{modificarCargo.actionCancelar}" id="cancelar" image="/resources/icons/buttons/Cancelar.png" immediate="true"
+                        type="submit" value="Cancelar"/>
+                </td>
+            </tr>
+        </table>
+    </f:subview>
+</div>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : ModalPopupHistorialAlarmas
+    Created on : 29-ago-2009, 18:26:02
+    Author     : farias.facundo
+-->
+<div xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:jsp="http://java.sun.com/JSP/Page">
+    <f:subview id="ModalPopupHistorialAlarma">
+        <html id="outputHtml1">
+            <head id="outputHead1"></head>
+            <body id="outputBody1" style="-rave-layout: grid">
+                <ice:form id="formHistorialAlarma">
+                    <ice:panelPopup binding="#{ModalPopupHistorialAlarma.panelPopup1}" draggable="true" id="panelPopup1" modal="true"
+                                    rendered="#{ModalPopupHistorialAlarma.panelPopup1Bean.showDraggablePanel}" styleClass="corePopup" visible="#{ModalPopupHistorialAlarma.panelPopup1Bean.showModalPanel}">
+                        <f:facet name="header">
+                            <ice:panelGroup styleClass="popupHeaderWrapper">
+                                <ice:outputText id="outputText1" styleClass="popupHeaderText" value="#{ModalPopupHistorialAlarma.title}"/>
+                                <ice:commandButton action="#{ModalPopupHistorialAlarma.cerrarPopup}" alt="Close" id="modalPnlCloseBtn"
+                                                   image="resources/rime/css-images/cal_off.gif" styleClass="popupHeaderImage" title="Close Popup" type="button"/>
+                            </ice:panelGroup>
+                        </f:facet>
+                        <f:facet name="body">
+                            <ice:dataTable columnClasses="rowTable" headerClass="hdrTable" id="dataTableHistorialAlarmas" rowClasses="rowTable"
+                            title="Mediciones" value="#{consultarAlarma.alarma.historialAlarma}" var="currentRow" width="100%" rows="4">
+                            <ice:column id="column1">
+                                <ice:outputText id="outputText1" value="#{currentRow['valor']}"/>
+                                <f:facet name="header">
+                                    <ice:outputText id="outputText2" value="Valor"/>
+                                </f:facet>
+                            </ice:column>
+                            <ice:column id="column2">
+                                <ice:outputText id="outputText3" value="#{currentRow['criticidad'].denominacion}"/>
+                                <f:facet name="header">
+                                    <ice:outputText id="outputText4" value="Criticidad"/>
+                                </f:facet>
+                            </ice:column>
+                            <ice:column id="column3">
+                                <ice:outputText id="outputText5" value="#{currentRow['acciones'] ? 'si' : 'no'}"/>
+                                <f:facet name="header">
+                                    <ice:outputText id="outputText6" value="Acciones"/>
+                                </f:facet>
+                            </ice:column>
+                            <ice:column id="column4" style="text-align: center;">
+                                <ice:outputText value="#{currentRow['fecha']}">
+                                    <f:convertDateTime pattern="dd-MMM-yyyy" />
+                                </ice:outputText>
+                                <f:facet name="header">
+                                    <ice:outputText id="outputText8" value="Fecha"/>
+                                </f:facet>
+                            </ice:column>
+                            
+                        </ice:dataTable>
+
+                        </f:facet>
+                    </ice:panelPopup>
+                </ice:form>
+            </body>
+        </html>
+    </f:subview>
+</div>

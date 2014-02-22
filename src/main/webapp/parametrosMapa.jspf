@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : parametrosMapa
+    Created on : 23-ago-2009, 21:51:42
+    Author     : farias.facundo
+-->
+
+<div style="-rave-layout: grid;" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="parametrosMapa">
+        <ice:panelGroup styleClass="exampleBox gmapContainer">
+            <table cellspacing="4" cellpadding="4">
+                <tr>
+                    <td>
+                        <ice:outputLabel value="Seleccione lo que desea ver en el mapa"/>
+                    </td>
+                    <td>
+                        <ice:selectOneRadio id="SlctDrk" style="font: bold; border: 1px solid orange; padding: 2%"
+                                            value="#{parametrosMapa.selected}" partialSubmit="true" >
+                            <f:selectItems  id="SlctColmena" value="#{parametrosMapa.opciones}"/>
+                        </ice:selectOneRadio>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+
+                </tr>
+                <tr>
+                </tr>
+            </table>
+        </ice:panelGroup>
+    </f:subview>
+</div>

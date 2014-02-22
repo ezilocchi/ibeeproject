@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : consultarEmpleado
+    Created on : 13-feb-2010, 13:27:33
+    Author     : burni.matias
+-->
+
+<div style="-rave-layout: grid; " xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="consultarEmpleado">
+        <table class="abm" width="100%">
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Legajo"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputLegajo" styleClass="abmInput"
+                                   value="#{consultarEmpleado.empleado.legajo}" readonly="true">
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Nombre"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputNombre" styleClass="abmInput"
+                                   value="#{consultarEmpleado.empleado.nombre}" readonly="true">
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Apellido"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputApellido" styleClass="abmInput"
+                                   value="#{consultarEmpleado.empleado.apellido}" readonly="true">
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Email"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputEmail" styleClass="abmInput"
+                                   value="#{consultarEmpleado.empleado.email}" readonly="true">
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Estado"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputEstado" styleClass="abmInput"
+                                   value="#{consultarEmpleado.empleado.estado.estado}" readonly="true">
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Cargo"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputCargo" styleClass="abmInput"
+                                   value="#{consultarEmpleado.empleado.cargo.denominacion}" readonly="true">
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Observaciones"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputObservaciones" styleClass="abmInput"
+                                   value="#{consultarEmpleado.empleado.observaciones}" readonly="true">
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Fecha Alta"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputFechaAlta" value="#{consultarEmpleado.empleado.fechaAlta}" styleClass="abmInput" readonly="true">
+                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Usuario"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputUsuario" styleClass="abmInput"
+                                   value="#{consultarEmpleado.empleado.usuario}" readonly="true">
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+
+                </td>
+                <td>
+                    <ice:commandButton id="volver" value="Volver" image="/resources/icons/buttons/volver.png"
+                                       action="#{consultarEmpleado.actionVolver}" immediate="true"/>
+                </td>
+            </tr>
+        </table>
+    </f:subview>
+</div>

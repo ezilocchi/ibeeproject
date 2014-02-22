@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : eliminarAlarma
+    Created on : 12-ene-2010, 22:04:10
+    Author     : carranza.matias
+-->
+
+<div style="-rave-layout: grid; " xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="EliminarAlarma">
+        <table class="abm" width="100%">
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Denominaci&#243;n"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputDenomAlarma" required="true" styleClass="abmInput" readonly="true"
+                                   value="#{eliminarAlarma.alarma.denominacion}" size="10" maxlength="100" />
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Descripci&#243;n"/>
+                </td>
+                <td>
+                    <ice:inputTextarea id="inputDescAlarma" readonly="true" styleClass="abmInput"
+                                       value="#{eliminarAlarma.alarma.descripcion}"/>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Origen"/>
+                </td>
+                <td>
+                    <ice:inputText  styleClass="abmInput" readonly="true" id="inputObs" value="#{eliminarAlarma.alarma.origen}"/>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Fecha Creaci&#243;n"/>
+                </td>
+                <td>
+                    <ice:inputText value="#{eliminarAlarma.alarma.fechaCreacion}" readonly="true">
+                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Fecha Inicio"/>
+                </td>
+                <td>
+                    <ice:inputText value="#{eliminarAlarma.alarma.fechaInicio}" readonly="true">
+                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Fecha Fin"/>
+                </td>
+                <td>
+                    <ice:inputText value="#{eliminarAlarma.alarma.fechaFin}" readonly="true">
+                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Cargo"/>
+                </td>
+                <td>
+                    <ice:inputText styleClass="abmInput" value="#{eliminarAlarma.alarma.cargo.descripcion} [#{eliminarAlarma.alarma.cargo.denominacion}]" readonly="true" />
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Rango Desde"/>
+                </td>
+                <td>
+                    <ice:inputText value="#{eliminarAlarma.alarma.rangoDesde}" readonly="true" />
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Rango Hasta"/>
+                </td>
+                <td>
+                    <ice:inputText value="#{eliminarAlarma.alarma.rangoHasta}" readonly="true" />
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Activado"/>
+                </td>
+                <td>
+                    <ice:inputText value="#{eliminarAlarma.alarma.activado ? 'si' : 'no'}" readonly="true" />
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Criticidad"/>
+                </td>
+                <td>
+                    <ice:inputText value="#{eliminarAlarma.alarma.criticidad}" readonly="true" />
+                </td>
+                <td class="extension">
+                    <ice:commandButton id="ver_mediciones"  value="Ver Mediciones" styleClass="buttonAdd" action="#{eliminarAlarma.verMediciones}" immediate="true"/>
+                </td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td class="aceptar">
+                    <ice:commandButton id="aceptar" value="Aceptar" action="#{eliminarAlarma.actionAceptar}" type="submit" image="/resources/icons/buttons/aceptar.png" />
+                </td>
+                <td>
+                    <ice:commandButton immediate="true" id="cancelar" value="Cancelar" action="#{eliminarAlarma.actionCancelar}" type="submit" image="/resources/icons/buttons/Cancelar.png"/>
+                </td>
+            </tr>
+        </table>
+    </f:subview>
+</div>

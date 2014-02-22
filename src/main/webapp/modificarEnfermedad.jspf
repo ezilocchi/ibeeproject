@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : modificarEnfermedad
+    Created on : 01-jul-2009, 22:23:42
+    Author     : farias.facundo
+-->
+<div style="-rave-layout: grid; " xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="modificarEnfermedad">
+        <table class="abm" width="100%">
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Denominaci&#243;n (*)"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputDenomEnf" required="true" styleClass="abmInput"
+                                   value="#{modificarEnfermedad.enfermedad.denominacion}">
+                        <f:validateLength minimum="5" maximum="100" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputDenomEnf" id="mDenom" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Duraci&#243;n Aproximada "/>
+                </td>
+                <td>
+                    <ice:inputText id="inputDurApr"  styleClass="abmInput" required="true"
+                                   value="#{modificarEnfermedad.enfermedad.duracionAprox}">
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"><ice:message for="inputDurApr" id="mDur" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Descripci&#243;n (*)"/>
+                </td>
+                <td>
+                    <ice:inputTextarea id="inputDesc" styleClass="abmInput" required="true"
+                                       value="#{modificarEnfermedad.enfermedad.descripcion}">
+                    </ice:inputTextarea>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputDesc" id="mDesc" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Observaciones"/>
+                </td>
+                <td>
+                    <ice:inputTextarea  styleClass="abmInput" id="inputObs" value="#{modificarEnfermedad.enfermedad.observaciones}"/>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Criticidad (*)"/>
+                </td>
+                <td>
+                    <ice:selectOneMenu value="#{modificarEnfermedad.enfermedad.criticidad.numero}" id="Crit01" title="Crit" styleClass="abmInput">
+                        <f:selectItems  value="#{Enfermedades.criticidades}" />
+                    </ice:selectOneMenu>
+                </td>
+                <td class="extension">
+                </td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="Crit01" id="mVal" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="S&#237;ntomas"/>
+                </td>
+                <td>
+                    <ice:outputLabel value=" No existen registros para mostrar. Para agregarlos seleccione la opci&#243;n agregar Sintomas.- "
+                                     rendered="#{modificarEnfermedad.tableSintomasEmpty}"/>
+                    <ice:dataTable value="#{modificarEnfermedad.enfermedad.sintomas}" var="sintomas" width="100%"
+                                   rendered="#{not modificarEnfermedad.tableSintomasEmpty}">
+                        <ice:column id="column1">
+                            <ice:outputText id="outputText1" value="#{sintomas['numero']}"/>
+                            <f:facet name="header">
+                                <ice:outputText id="outputText2" value="Numero"/>
+                            </f:facet>
+                        </ice:column>
+                        <ice:column id="column2">
+                            <ice:outputText id="outputText3" value="#{sintomas['denominacion']}"/>
+                            <f:facet name="header">
+                                <ice:outputText id="outputText4" value="Denominaci&#243;n"/>
+                            </f:facet>
+                        </ice:column>
+                        <ice:column id="column3">
+                            <ice:outputText id="outputText5" value="#{sintomas['descripcion']}"/>
+                            <f:facet name="header">
+                                <ice:outputText id="outputText6" value="Descripci&#243;n"/>
+                            </f:facet>
+                        </ice:column>
+                        <ice:column id="column4" styleClass="columnaAciones">
+                            <ice:commandButton value="Eliminar" styleClass="buttonDelete" action="#{modificarEnfermedad.eliminarSintomas}"/>
+                            <f:param value="#{sintomas}" binding="#{modificarEnfermedad.parametroSintoma}"/>
+                            <f:facet name="header">
+                                <ice:outputText id="outputText7" value="Acciones"/>
+                            </f:facet>
+                        </ice:column>
+                    </ice:dataTable>
+                </td>
+                <td>
+                    <ice:commandButton id="sint_btn_add"  value="Agregar S&#237;ntomas" styleClass="buttonAdd"
+                                       action="#{modificarEnfermedad.agregarSintomas}" immediate="true"/>
+                </td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Tratamientos"/>
+                </td>
+                <td>
+                    <ice:outputLabel value=" No existen registros para mostrar. Para agregarlos seleccione la opci&#243;n agregar Tratamientos.- "
+                                     rendered="#{modificarEnfermedad.tableTratamientosEmpty}"/>
+                    <ice:dataTable value="#{modificarEnfermedad.enfermedad.tratamientos}" var="tratamientos" width="100%"
+                                   rendered="#{not modificarEnfermedad.tableTratamientosEmpty}">
+                        <ice:column id="column1">
+                            <ice:outputText id="outputText1" value="#{tratamientos['numero']}"/>
+                            <f:facet name="header">
+                                <ice:outputText id="outputText2" value="Numero"/>
+                            </f:facet>
+                        </ice:column>
+                        <ice:column id="column2">
+                            <ice:outputText id="outputText3" value="#{tratamientos['denominacion']}"/>
+                            <f:facet name="header">
+                                <ice:outputText id="outputText4" value="Denominaci&#243;n"/>
+                            </f:facet>
+                        </ice:column>
+                        <ice:column id="column3">
+                            <ice:outputText id="outputText5" value="#{tratamientos['descripcion']}"/>
+                            <f:facet name="header">
+                                <ice:outputText id="outputText6" value="Descripci&#243;n"/>
+                            </f:facet>
+                        </ice:column>
+                        <ice:column id="column4">
+                            <ice:commandButton value="Eliminar" styleClass="buttonDelete" action="#{modificarEnfermedad.eliminarTratamientos}"/>
+                            <f:param value="#{tratamientos}" binding="#{modificarEnfermedad.parametroTratamiento}"/>
+                            <f:facet name="header">
+                                <ice:outputText id="outputText7" value="Acciones"/>
+                            </f:facet>
+                        </ice:column>
+                    </ice:dataTable>
+                </td>
+                <td class="extension">
+                    <ice:commandButton id="trat_btn_add" value="Agregar Tratamientos" styleClass="buttonAdd"
+                                       action="#{modificarEnfermedad.agregarTratamientos}" immediate="true"/>
+                </td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="aceptar">
+                    <ice:commandButton id="aceptar" value="Aceptar" image="/resources/icons/buttons/editar.png"
+                                       action="#{modificarEnfermedad.actionAceptar}"/>
+                </td>
+                <td>
+                    <ice:commandButton id="cancelar" value="Cancelar" image="/resources/icons/buttons/Cancelar.png"
+                                       action="#{modificarEnfermedad.actionCancelar}" immediate="true"/>
+                </td>
+            </tr>
+        </table>
+    </f:subview>
+</div>

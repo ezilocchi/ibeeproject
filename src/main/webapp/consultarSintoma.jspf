@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : consultarSintoma
+    Created on : 24-ago-2009, 22:44:38
+    Author     : carranza.matias
+-->
+
+<div style="-rave-layout: grid; " xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="consultarSintoma">
+        <table class="abm" width="100%">
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Denominaci&#243;n"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputDenomSintoma" required="true" styleClass="abmInput" readonly="true"
+                    value="#{consultarSintoma.sintoma.denominacion}" size="10" maxlength="100" partialSubmit="true"/>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Descripci&#243;n"/>
+                </td>
+                <td>
+                    <ice:inputTextarea id="inputDescSintoma" readonly="true" styleClass="abmInput" required="true"
+                    value="#{consultarSintoma.sintoma.descripcion}"/>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Observaciones"/>
+                </td>
+                <td>
+                    <ice:inputTextarea  styleClass="abmInput" readonly="true" id="inputObs" value="#{consultarSintoma.sintoma.observaciones}"/>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                </td>
+                <td>
+                    <ice:commandButton id="cancelar" value="Volver" image="/resources/icons/buttons/volver.png" action="#{consultarSintoma.actionVolver}" type="submit"/>
+                </td>
+            </tr>
+        </table>
+    </f:subview>
+</div>
+

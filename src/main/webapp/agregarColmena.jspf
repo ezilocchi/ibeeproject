@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : agregarColmena
+    Created on : 30-ago-2009, 18:09:35
+    Author     : carranza.matias
+-->
+
+<div style="-rave-layout: grid; " xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+  <f:subview id="agregarColmena">
+        <table class="abm" width="100%">
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Denominaci&#243;n (*)"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputDenomColmena" required="true" styleClass="abmInput" value="#{agregarColmena.colmena.denominacion}" partialSubmit="true">
+                        <f:validateLength minimum="3" maximum="100" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputDenomColmena" id="mDenom" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Fecha Alta (*)"/>
+                </td>
+                <td>
+                    <ice:selectInputDate id="fecha" value="#{agregarColmena.colmena.fechaAlta}" required="true" highlightUnit="DAY_OF_YEAR" highlightValue="1" renderAsPopup="true">
+                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                    </ice:selectInputDate>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="fecha" id="mFecha" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Familia (*)"/>
+                </td>
+                <td>
+                    <ice:selectOneMenu id="familia" value="#{agregarColmena.colmena.familia.nroFamilia}" title="Familia" required="true" styleClass="abmInput" partialSubmit="true" rendered="#{agregarColmena.familiasSinAsignar}">
+                        <f:selectItems value="#{Colmenas.familiasSinAsignar}" />
+                    </ice:selectOneMenu>
+                    <ice:inputText id="familiaDefault" rendered="#{not agregarColmena.familiasSinAsignar}" value="No hay familias para asignar" readonly="true" styleClass="abmInput"/>
+                </td>
+                <td class="extension">
+                    <ice:commandButton styleClass="buttonAdd" immediate="true" value="Agregar Familia" action="#{agregarColmena.agregarFamilia}"/>
+                </td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="familia" id="mfamilia" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                        <ice:message for="familiaDefault" id="mfamiliaDefault" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Tipo Miel (*)"/>
+                </td>
+                <td>
+                    <ice:selectOneMenu id="tipoMiel" value="#{agregarColmena.colmena.tipoMiel.idTipoMiel}" title="Tipo Miel" required="true" styleClass="abmInput" partialSubmit="true">
+                        <f:selectItems value="#{Colmenas.tiposMiel}" />
+                    </ice:selectOneMenu>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="tipoMiel" id="mtipoMiel" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Caj&#243;n (*)"/>
+                </td>
+                <td>
+                    <ice:selectOneMenu id="cajon" value="#{agregarColmena.colmena.cajon.nroCajon}" title="Cajon" styleClass="abmInput" rendered="#{agregarColmena.cajonesSinAsignar}">
+                        <f:selectItems value="#{Colmenas.cajonesSinAsignar}" />
+                    </ice:selectOneMenu>
+                    <ice:inputText id ="cajonDefault" rendered="#{not agregarColmena.cajonesSinAsignar}" value="No hay cajones para asignar" readonly="true" styleClass="abmInput"/>
+                </td>
+                <td class="extension">
+                    <ice:commandButton styleClass="buttonAdd" immediate="true" value="Agregar Caj&#243;n" action="#{agregarColmena.agregarCajon}"/>
+                </td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="cajon" id="mcajon" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                        <ice:message for="cajonDefault" id="mcajonDefault" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="aceptar">
+                    <ice:commandButton id="aceptar" value="Aceptar" action="#{agregarColmena.actionAceptar}" image="/resources/icons/buttons/nuevo.png" />
+                </td>
+                <td>
+                    <ice:commandButton immediate="true" id="cancelar" value="Cancelar" action="#{agregarColmena.actionCancelar}" image="/resources/icons/buttons/Cancelar.png" />
+                </td>
+            </tr>
+        </table>
+    </f:subview>
+</div>

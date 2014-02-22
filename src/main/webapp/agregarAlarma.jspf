@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : agregarAlarma
+    Created on : 12-ene-2010, 22:03:52
+    Author     : carranza.matias
+-->
+
+<div style="-rave-layout: grid; " xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="agregarAlarma">
+        <table class="abm" width="100%">
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Zona"/>
+                </td>
+                <td>
+                    <ice:selectOneMenu value="#{agregarAlarma.alarma.idZona}" id="zonas" title="Zonas" immediate="true">
+                        <f:selectItems  value="#{Alarmas.zonas}" />
+                    </ice:selectOneMenu>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="zonas" id="mValZona" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Denominaci&#243;n (*)"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputDenomAlarma" required="true" styleClass="abmInput" value="#{agregarAlarma.alarma.denominacion}" size="10" maxlength="100" immediate="true">
+                        <f:validateLength minimum="5" maximum="100" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputDenomAlarma" id="mDenom" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Descripci&#243;n"/>
+                </td>
+                <td>
+                    <ice:inputTextarea id="inputDescAlarma" styleClass="abmInput" value="#{agregarAlarma.alarma.descripcion}" immediate="true">
+                        <f:validateLength maximum="500" />
+                    </ice:inputTextarea>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputDescAlarma" id="mDescAlarma" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Fecha Inicio"/>
+                </td>
+                <td>
+                    <ice:selectInputDate id="fechaInicio" value="#{agregarAlarma.alarma.fechaInicio}" required="true" highlightUnit="DAY_OF_YEAR" highlightValue="1" renderAsPopup="true" immediate="true">
+                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                    </ice:selectInputDate>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="fechaInicio" id="mFechaInicio" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Cargo"/>
+                </td>
+                <td>
+                    <ice:selectOneMenu value="#{agregarAlarma.alarma.cargo.idCargo}" id="cargo" title="Cargo" immediate="true">
+                        <f:selectItems  value="#{Alarmas.cargos}" />
+                    </ice:selectOneMenu>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="cargo" id="mCargo" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Rango Desde (&#186;C)"/>
+                </td>
+                <td>
+                    <ice:inputText value="#{agregarAlarma.alarma.rangoDesde}" id="inputRangoDesde" required="true" immediate="true">
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputRangoDesde" id="mRangoDesde" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Rango Hasta (&#186;C)"/>
+                </td>
+                <td>
+                    <ice:inputText value="#{agregarAlarma.alarma.rangoHasta}" id="inputRangoHasta" required="true" immediate="true">
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputRangoHasta" id="mRangoHasta" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Activado"/>
+                </td>
+                <td>
+                    <ice:selectBooleanCheckbox title="Si esta Activada, entrara en funcionamiento el dia para el cual se creo" value="#{agregarAlarma.alarma.activado}" />
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="aceptar">
+                    <ice:commandButton id="aceptar" value="Aceptar" action="#{agregarAlarma.actionAceptar}" image="/resources/icons/buttons/nuevo.png" />
+                </td>
+                <td>
+                    <ice:commandButton immediate="true" id="cancelar" value="Cancelar" action="#{agregarAlarma.actionCancelar}" image="/resources/icons/buttons/Cancelar.png" />
+                </td>
+            </tr>
+        </table>
+    </f:subview>
+</div>

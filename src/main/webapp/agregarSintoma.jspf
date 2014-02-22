@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : agregarSintoma
+    Created on : 22-ago-2009, 19:55:37
+    Author     : carranza.matias
+-->
+
+<div style="-rave-layout: grid; " xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="agregarSintoma">
+        <table class="abm" width="100%">
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Denominaci&#243;n (*)"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputDenomSintoma" required="true" styleClass="abmInput"
+                    value="#{agregarSintoma.sintoma.denominacion}" partialSubmit="true">
+                        <f:validateLength minimum="3" maximum="25" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputDenomSintoma" id="mDenom" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Descripci&#243;n"/>
+                </td>
+                <td>
+                    <ice:inputTextarea id="inputDescSintoma" styleClass="abmInput" value="#{agregarSintoma.sintoma.descripcion}">
+                        <f:validateLength minimum="0" maximum="100" />
+                    </ice:inputTextarea>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputDescSintoma" id="mDesc" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Observaciones"/>
+                </td>
+                <td>
+                    <ice:inputTextarea  styleClass="abmInput" id="inputObs" value="#{agregarSintoma.sintoma.observaciones}">
+                        <f:validateLength minimum="0" maximum="500" />
+                    </ice:inputTextarea>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputObs" id="mObs" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="aceptar">
+                    <ice:commandButton id="aceptar" value="Aceptar" action="#{agregarSintoma.actionAceptar}" type="submit" image="/resources/icons/buttons/nuevo.png" />
+                </td>
+                <td>
+                    <ice:commandButton immediate="true" id="cancelar" value="Cancelar" action="#{agregarSintoma.actionCancelar}" type="submit" image="/resources/icons/buttons/Cancelar.png" />
+                </td>
+            </tr>
+        </table>
+    </f:subview>
+</div>

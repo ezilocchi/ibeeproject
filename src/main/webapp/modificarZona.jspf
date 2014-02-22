@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : modificarZona
+    Created on : 14/03/2010, 16:58:25
+    Author     : CyberShark
+-->
+
+<div style="-rave-layout: grid;" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:jsp="http://java.sun.com/JSP/Page" >
+    <f:subview id="modificarZona">
+        <table class="abm" width="100%">
+            <tr>
+                <td class="title">
+                    <ice:outputLabel value="Nro Zona"/>
+                </td>
+                <td>
+                    <ice:inputText styleClass="abmInput" value="#{modificarZona.zona.idZona}" disabled="true"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Ubicaci&#243;n"/>
+                    <td>
+                        <ice:panelGrid columns="3" styleClass="abm" style="width: 100%">
+                            <td>
+                                <ice:outputText value="Latitud"/>
+                                <ice:inputText id="latitud" styleClass="abmInput" value="#{modificarZona.zona.latitud}" disabled="true"/>
+                            </td>
+                            <td>
+                                <ice:outputText value="Longitud"/>
+                                <ice:inputText id="longitud" styleClass="abmInput" value="#{modificarZona.zona.longitud}" disabled="true"/>
+                            </td>
+                        </ice:panelGrid>
+                    </td>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputLabel value="Denominaci&#243;n (*)"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputDenomZonas" required="true" styleClass="abmInput" value="#{modificarZona.zona.zona}">
+                        <f:validateLength minimum="3" maximum="100" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputDenomZonas" id="mDenomin" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputLabel  value="Fecha Alta"/>
+                </td>
+                <td>
+                    <ice:selectInputDate id="fechaAlta"  value="#{modificarZona.zona.fechaAlta}" highlightUnit="DAY_OF_YEAR" highlightValue="1"  renderAsPopup="true" required="true">
+                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                    </ice:selectInputDate>
+                </td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="fechaAlta" id="mFecha" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputLabel value="Tipo de Zona"/>
+                </td>
+                <td>
+                    <ice:selectOneRadio id="SlctDrk" value="#{modificarZona.selected}" partialSubmit="true" rendered="true">
+                        <f:selectItems  id="SlctColmena" value="#{modificarZona.opciones}"/>
+                    </ice:selectOneRadio>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputLabel value="Tipo de #{modificarZona.tipo}"/>
+                </td>
+                <td>
+                    <ice:selectOneMenu value="#{modificarZona.idtipoZona}" styleClass="abmInput"  title="Zonas" id="inputFlora" rendered="#{modificarZona.flor}">
+                        <f:selectItems value="#{Zonas.flora}" />
+                    </ice:selectOneMenu>
+                    <ice:selectOneMenu value="#{modificarZona.idtipoZona}" styleClass="abmInput"  title="Zonas" id="inputQuimico" rendered="#{modificarZona.agro}">
+                        <f:selectItems value="#{Zonas.agroquimico}" />
+                    </ice:selectOneMenu>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputLabel value="Refrescar"/>
+                </td>
+                <td>
+                    <ice:commandButton action="#{modificarZona.redibujar}" id="refrescar" styleClass="buttonRefresh" title="Refrescar" />
+                </td>
+            </tr>
+            <tr >
+                <td>
+                </td>
+                <td>
+                </td>
+                <td class="aceptar">
+                    <ice:commandButton action="#{modificarZona.guardar}" value="Editar" title="Guardar" image="/resources/icons/buttons/editar.png" />
+                </td>
+                <td  class="aceptar">
+                    <ice:commandButton  immediate="true" action="#{modificarZona.actionCancelar}" id="cancelar" type="submit" value="Cancelar" image="/resources/icons/buttons/Cancelar.png" />
+                </td>
+            </tr>
+        </table>
+        <ice:dataTable value="#{mostrarZona.puntos}" var="currentRow" width="100%"
+                       columnClasses="rowTable"  id="dataTableAp" rowClasses="rowTable" title="Coordenadas" rendered="false" >
+            <ice:column id="column1">
+                <ice:outputText id="denominacion" value="#{currentRow['idUbicacion']}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText2" value="Nro de Ubicacion"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column2">
+                <ice:outputText id="latitud" value="#{currentRow['latitud']}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText3" value="Latitud "/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column3">
+                <ice:outputText id="longitud" value="#{currentRow['longitud']}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText4" value="Longitud" />
+                </f:facet>
+            </ice:column>
+        </ice:dataTable>
+    </f:subview>
+</div>

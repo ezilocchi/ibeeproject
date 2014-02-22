@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : ModalPopupHistorialFamilia
+    Created on : 18-abr-2010, 14:02:37
+    Author     : farias.facundo
+-->
+
+<div xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:jsp="http://java.sun.com/JSP/Page">
+    <f:subview id="ModalPopupHistorialAlarma">
+        <html id="outputHtml1">
+            <head id="outputHead1"></head>
+            <body id="outputBody1" style="-rave-layout: grid">
+                <ice:form id="formHistorialAlarma">
+                    <ice:panelPopup binding="#{ModalPopupHistorialFamilia.panelPopup1}" draggable="true" id="panelPopup1" modal="true"
+                                    rendered="#{ModalPopupHistorialFamilia.panelPopup1Bean.showDraggablePanel}" styleClass="corePopup" visible="#{ModalPopupHistorialFamilia.panelPopup1Bean.showModalPanel}">
+                        <f:facet name="header">
+                            <ice:panelGroup styleClass="popupHeaderWrapper">
+                                <ice:outputText id="outputText1" styleClass="popupHeaderText" value="#{ModalPopupHistorialFamilia.title}"/>
+                                <ice:commandButton action="#{ModalPopupHistorialFamilia.cerrarPopup}" alt="Close" id="modalPnlCloseBtn"
+                                                   image="resources/rime/css-images/cal_off.gif" styleClass="popupHeaderImage" title="Close Popup" type="button"/>
+                            </ice:panelGroup>
+                        </f:facet>
+                        <f:facet name="body">
+                            <ice:dataTable columnClasses="rowTable" headerClass="hdrTable" id="dataTableHistorialEstadosFamilia" rowClasses="rowTable"
+                                           title="Historial de Estados" value="#{ModalPopupHistorialFamilia.historialEstadoFamilia}" var="currentRow" width="100%" rows="4">
+                                <ice:column id="column1">
+                                    <ice:outputText id="outputText1" value="#{currentRow['fecha']}">
+                                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                                    </ice:outputText>
+                                    <f:facet name="header">
+                                        <ice:outputText id="outputText2" value="Fecha"/>
+                                    </f:facet>
+                                </ice:column>
+                                <ice:column id="column2">
+                                    <ice:outputText id="outputText3" value="#{currentRow['estado'].denominacion}"/>
+                                    <f:facet name="header">
+                                        <ice:outputText id="outputText4" value="Estado"/>
+                                    </f:facet>
+                                </ice:column>
+                                <ice:column id="column3">
+                                    <ice:graphicImage id="outputText12455" value="#{currentRow['estado'].iconEstado}"
+                                                      title="#{currentRow['estado'].denominacion}"/>
+                                    <f:facet name="header">
+                                        <ice:outputText id="outputText6" value="Icono"/>
+                                    </f:facet>
+                                </ice:column>
+                            </ice:dataTable>
+                        </f:facet>
+                        <ice:commandButton id="accept" value="Aceptar" styleClass="floatRight buttonAccept" partialSubmit="true"
+                                           action="#{ModalPopupHistorialFamilia.acepta}" />
+                    </ice:panelPopup>
+                </ice:form>
+            </body>
+        </html>
+    </f:subview>
+</div>

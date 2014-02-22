@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : consultarTiposDeActividad
+    Created on : 05-sep-2009, 18:01:38
+    Author     : farias.facundo
+-->
+<div style="-rave-layout: grid;" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="consultarTiposDeActividad">
+        <div class="headerTable">
+            <ice:commandButton action="#{consultarTiposDeActividad.add_action}" id="btn_add" styleClass="buttonAdd floatRight" value="Agregar Tipo De Actividad"/>
+
+            <!-- Paginator -->
+            <ice:dataPaginator fastStep="3" for="dataTableTpoAct" id="dataScrollTpoAct" paginator="true" paginatorMaxPages="5" styleClass="floatLeft">
+                <f:facet name="first">
+                    <ice:graphicImage style="border:none;" title="First Page" url="./xmlhttp/css/rime/css-images/arrow-first.gif"/>
+                </f:facet>
+                <f:facet name="last">
+                    <ice:graphicImage style="border:none;" title="Last Page" url="./xmlhttp/css/rime/css-images/arrow-last.gif"/>
+                </f:facet>
+                <f:facet name="previous">
+                    <ice:graphicImage style="border:none;" title="Previous Page" url="./xmlhttp/css/rime/css-images/arrow-previous.gif"/>
+                </f:facet>
+                <f:facet name="next">
+                    <ice:graphicImage style="border:none;" title="Next Page" url="./xmlhttp/css/rime/css-images/arrow-next.gif"/>
+                </f:facet>
+                <f:facet name="fastforward">
+                    <ice:graphicImage style="border:none;" title="Fast Forward" url="./xmlhttp/css/rime/css-images/arrow-ff.gif"/>
+                </f:facet>
+                <f:facet name="fastrewind">
+                    <ice:graphicImage style="border:none;" title="Fast Backwards" url="./xmlhttp/css/rime/css-images/arrow-fr.gif"/>
+                </f:facet>
+            </ice:dataPaginator>
+        </div>
+        <!-- Data Table -->
+        <ice:dataTable columnClasses="rowTable" headerClass="hdrTable" id="dataTableTpoAct" rowClasses="rowTable" rows="5" title="Sintomas"
+            value="#{consultarTiposDeActividad.tiposDeActividad}" var="currentRow" width="100%">
+            <ice:column id="column1" style="text-align: center;">
+                <ice:outputText id="outputText1" value="#{currentRow['codigo']}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText2" value="C&#243;digo"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column2">
+                <ice:outputText id="outputText3" value="#{currentRow['denominacion']}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText4" value="Descripci&#243;n"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column3">
+                <ice:outputText id="outputText5" value="#{currentRow['descripcion']}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText6" value="Denominaci&#243;n"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column4">
+                <ice:outputText id="outputText7" value="#{currentRow['cargo'].descripcion}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText8" value="Roles Permitidos"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column5" styleClass="columnaAciones">
+                <ice:commandButton action="#{consultarTiposDeActividad.modif_action}" id="btn_modif" styleClass="buttonEdit" title="editar" value="Modificar"/>
+                <ice:commandButton action="#{consultarTiposDeActividad.delete_action}" id="btn_elim" styleClass="buttonDelete" title="eliminar" value="Eliminar"/>
+                <ice:commandButton action="#{consultarTiposDeActividad.query_action}" id="btn_ver" styleClass="buttonInfo" title="consultar" value="Consultar"/>
+                <f:param binding="#{consultarTiposDeActividad.parametro}" value="#{currentRow}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText14" value="Acciones"/>
+                </f:facet>
+            </ice:column>
+        </ice:dataTable>
+    </f:subview>
+</div>

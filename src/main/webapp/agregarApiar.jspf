@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : agregarApiar
+    Created on : 22-ago-2009, 14:12:46
+    Author     : erro.gonzalo
+-->
+<div style="-rave-layout: grid" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:jsp="http://java.sun.com/JSP/Page">
+    <f:subview id="agregarApiar">
+        <table class="abm" width="100%">
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Nro de Apiar"/>
+                </td>
+                <td>
+                    <ice:inputText id="idApiar" maxlength="100" required="false" size="10" styleClass="abmInput" value="#{agregarApiar.apiar.idApiar}" disabled="true" />
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="idApiar" id="mDenom" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px" />
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                   <ice:outputText value="Denominaci&#243;n (*)"/>
+                </td>
+                <td>
+                    <ice:inputText id="denominacion"  required="true"  validatorMessage="valor requerido" styleClass="abmInput" value="#{agregarApiar.apiar.denominacion}" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message title="El campo denominaci&#243;n es requerido" for="denominacion" id="deno" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Zona (*)"/>
+                </td>
+                <td>
+                    <ice:selectOneMenu value="#{agregarApiar.apiar.zona.idZona}" styleClass="abmInput"  title="Zonas" id="inputZona">
+                        <f:selectItems value="#{Apiares.zonas}" />
+                    </ice:selectOneMenu>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Fecha Alta (*)"/>
+                </td>
+                <td>
+
+                    <ice:selectInputDate id="fechaAlta"  value="#{agregarApiar.apiar.fechaAlta}" highlightUnit="DAY_OF_YEAR" highlightValue="1"  renderAsPopup="true" required="true">
+                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                    </ice:selectInputDate>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="fechaAlta" id="fechaA" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Ubicaci&#243;n"/>
+                    <td>
+                        <ice:panelGrid columns="3" styleClass="abm" style="width: 100%">
+                            <td>
+                                <ice:outputText value="Latitud"/>
+                                <ice:inputText id="latitud" styleClass="abmInput" value="#{agregarApiar.apiar.ubicacion.latitud}" />
+                            </td>
+                            <td>
+                                <ice:outputText value="Longitud"/>
+                                <ice:inputText id="longitud" styleClass="abmInput" value="#{agregarApiar.apiar.ubicacion.longitud}"/>
+                            </td>
+                            <td>
+                                <ice:commandButton value="Agregar coordenadas" styleClass="buttonPosition"
+                                                   action="#{agregarApiar.agregarPuntos}" />
+                            </td>
+                        </ice:panelGrid>
+                    </td>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="latitud" id="lat" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                    <span class="validator">
+                        <ice:message for="longitud" id="long" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Colmenas (*)"/>
+                </td>
+                <td>
+                    <ice:panelGrid columns="3" styleClass="abm"  style="width: 100%">
+                        <ice:outputText id="sinAsignar" value="Colmenas sin asignar"/>
+                        <ice:dataTable columnClasses="rowTable" headerClass="hdrTable" id="dataTable1" rowClasses="rowTable"
+                                       title="Colmenas Sin Asignar" value="#{Apiares.colmenasSinAsignar}" var="currentRow" width="100%">
+                            <ice:column id="column1">
+                                <ice:outputText id="outputText1" value="#{currentRow['idColmena']}"/>
+                                <f:facet name="header">
+                                    <ice:outputText id="outputText2" value="ID de Colmena"/>
+                                </f:facet>
+                            </ice:column>
+                            <ice:column id="column2">
+                                <ice:outputText id="outputText3" value="#{currentRow['fechaAlta']}"/>
+                                <f:facet name="header">
+                                    <ice:outputText id="outputText4" value="Fecha de Alta"/>
+                                </f:facet>
+                            </ice:column>
+                            <ice:column id="column3">
+                                <ice:outputText id="outputText5" value="#{currentRow['denominacion']}"/>
+                                <f:facet name="header">
+                                    <ice:outputText id="outputText6" value="Denominaci&#243;n"/>
+                                </f:facet>
+                            </ice:column>
+                            <ice:column id="column7">
+                                <ice:commandButton partialSubmit="true" action="#{agregarApiar.add_action}" id="btn_add"
+                                                   styleClass="buttonAdd" value="Asignar" visible="true"/>
+                                <f:param value="#{currentRow}" binding="#{agregarApiar.parametro}"/>
+                                <f:facet name="header">
+                                    <ice:outputText id="outputText14" value="Acciones"/>
+                                </f:facet>
+                            </ice:column>
+                        </ice:dataTable>
+                    </ice:panelGrid>
+                    <ice:panelGrid columns="3" styleClass="abm" style="width: 100%">
+                        <ice:outputText id="asignadas" value="Colmenas asigndas"/>
+                        <ice:dataTable columnClasses="rowTable" headerClass="hdrTable" id="dataTable2" rowClasses="rowTable"
+                        title="Colmenas Asignadas" value="#{agregarApiar.apiar.colmenasAsignadas}" var="currentRow" width="100%">
+                            <ice:column id="column1">
+                                <ice:outputText id="outputText11" value="#{currentRow['idColmena']}"/>
+                                <f:facet name="header">
+                                    <ice:outputText id="outputText21" value="ID de Colmena"/>
+                                </f:facet>
+                            </ice:column>
+                            <ice:column id="column2">
+                                <ice:outputText id="outputText31" value="#{currentRow['fechaAlta']}"/>
+                                <f:facet name="header">
+                                    <ice:outputText id="outputText41" value="Fecha de Alta"/>
+                                </f:facet>
+                            </ice:column>
+                            <ice:column id="column3">
+                                <ice:outputText id="outputText51" value="#{currentRow['denominacion']}"/>
+                                <f:facet name="header">
+                                    <ice:outputText id="outputText61" value="Denominaci&#243;n"/>
+                                </f:facet>
+                            </ice:column>
+                            <ice:column id="column17">
+                                <ice:commandButton action="#{agregarApiar.delete_action}" id="btn_elim"
+                                                   styleClass="buttonDelete" value="Desasignar" visible="true"/>
+                                <f:param value="#{currentRow}" binding="#{agregarApiar.parametro}"/>
+                                <f:facet name="header">
+                                    <ice:outputText id="outputText141" value="Acciones"/>
+                                </f:facet>
+                            </ice:column>
+                        </ice:dataTable>
+                    </ice:panelGrid>
+                </td>
+               <td class="extension"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="dataTable2" id="tablaAsig" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Layout (*)"/>
+                </td>
+                <td>
+                    <ice:selectOneMenu partialSubmit="true" value="#{agregarApiar.apiar.layout.idLayout}"  valueChangeListener="#{agregarApiar.cargarPosiciones}" styleClass="abmInput"  title="layouts" id="inputLay">
+                        <f:selectItems value="#{Apiares.layouts}" />
+                    </ice:selectOneMenu>
+                </td>
+
+                <td class="extension" align="left">
+                    <ice:commandButton immediate="true"  action="#{agregarApiar.agregarLayout}" styleClass="buttonAdd" value="Agregar Layout" visible="true" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputLay"  id="mObs" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+               <td class="title">
+                    <ice:outputText value="Posiciones"/>
+                </td>
+                <td>
+                   <ice:commandButton  action="#{agregarApiar.setearPosicion}" styleClass="buttonAdd" value="#{currentRow}" immediate="true"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Layout del Apiar"/>
+                </td>
+                <td>
+                    <ice:panelGrid columns="1"  styleClass="abm" style="width: 100%">
+                        <td>
+                            <ice:outputLabel id="colmenas_max" value="colmenas max."/>
+                            <ice:inputText partialSubmit="true" id="cant_colmenas_max" disabled="true" value="#{agregarApiar.cantidad_max}"   />
+                        </td>
+                        <td>
+                            <ice:outputLabel id="colmenas" value="colmenas asignadas"/>
+                            <ice:inputText id="cant_colmenas_asignada" readonly="true" disabled="true"  value="#{agregarApiar.cantidad_asignada}" />
+                        </td>
+                        <td id="layoutTable" >
+                            <ice:dataTable columnClasses="rowTable" headerClass="hdrTable" id="dataTable3" rowClasses="rowTable"
+                            title="Colmenas Sin Asignar" value="#{agregarApiar.apiar.colmenasAsignadas}" var="currentRow" width="100%">
+                                <ice:column id="column1">
+                                    <ice:outputText id="outputText1" value="#{currentRow['posicion'].posHorizontal}"/>
+                                    <f:facet name="header">
+                                        <ice:outputText id="outputText2" value="Posicion X"/>
+                                    </f:facet>
+                                </ice:column>
+                                <ice:column id="column2">
+                                    <ice:outputText id="outputText3" value="#{currentRow['posicion'].posVertical}"/>
+                                    <f:facet name="header">
+                                        <ice:outputText id="outputText4" value="Posicion Y"/>
+                                    </f:facet>
+                                </ice:column>
+                                <ice:column id="column3">
+                                    <ice:outputText id="outputText5" value="#{currentRow['denominacion']}"/>
+                                    <f:facet name="header">
+                                        <ice:outputText id="outputText6" value="Colmena"/>
+                                    </f:facet>
+                                </ice:column>
+                            </ice:dataTable>
+                        </td>
+                        <tr>
+                            <td colspan="2">
+                                <span class="validator">
+                                    <ice:message for="dataTable3" id="tablaPos" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                                </span>
+                            </td>
+                        </tr>
+                    </ice:panelGrid>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="aceptar">
+                    <ice:commandButton action="#{agregarApiar.action_guardar}"  id="aceptar" type="submit" value="Aceptar" image="/resources/icons/buttons/nuevo.png" />
+                </td>
+                <td>
+                    <ice:commandButton  immediate="true" action="#{agregarApiar.actionCancelar}" id="cancelar" type="submit" value="Cancelar" image="/resources/icons/buttons/Cancelar.png" />
+                </td>
+            </tr>
+        </table>
+        <ice:panelConfirmation id="confirmRecord"  
+                               acceptLabel="OK"  
+                               cancelLabel="Cancel"  
+                               message="¿Est&#225; seguro que desea registrar el apiar ?"
+                               title="Confirmar Operaci&#243;n"
+                               draggable="false"  
+                               styleClass="corePopup"
+                               />
+       </f:subview>
+</div>

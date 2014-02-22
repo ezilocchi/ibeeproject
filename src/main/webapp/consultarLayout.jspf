@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : consultarLayout
+    Created on : 20-sep-2009, 23:55:31
+    Author     : Administrador
+-->
+
+<div style="-rave-layout: grid" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+  <f:subview id="consultarLayout">
+           <table class="abm" width="100%">
+            <tr>
+                <td class="title">
+                    <ice:outputText id="labelLayout" value="Nro Layout"/>
+                </td>
+                <td>
+                    <ice:inputText id="idLayout" maxlength="100" partialSubmit="true" required="false" size="10" styleClass="abmInput" value="#{consultarLayout.layout.idLayout}" disabled="true" />
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="idLayout" id="mDenom" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+
+            </tr>
+            <tr>
+                <td class="title">
+                   <ice:outputText value="Denominaci&#243;n"/>
+                </td>
+                <td>
+                    <ice:inputText id="denominacion2"  partialSubmit="true" required="true" styleClass="abmInput" value="#{consultarLayout.layout.denominacion}" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="denominacion2" id="deno" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Dise&#241;o"/>
+                </td>
+                <td>
+                    <ice:inputText id="disenio"  partialSubmit="true" required="true" styleClass="abmInput" value="#{consultarLayout.layout.disenio}"  readonly="true"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Fecha Creaci&#243;n"/>
+                </td>
+                <td>
+
+                    <ice:selectInputDate id="fechaCreacion"  value="#{consultarLayout.layout.fechaCreacion}" highlightUnit="DAY_OF_YEAR" highlightValue="1"  renderAsPopup="true" required="true" disabled="true">
+                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                    </ice:selectInputDate>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="fechaCreacion" id="fechaA2" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Dimesiones"/>
+                    <td>
+                        <ice:panelGrid columns="3" styleClass="abm">
+                            <td>
+                                <ice:outputText value="Largo"/>
+                                <ice:inputText id="largo" styleClass="abmInput" value="#{consultarLayout.layout.largo}" required="true" readonly="true"/>
+                            </td>
+                            <td>
+                                <ice:outputText value="Ancho"/>
+                                <ice:inputText id="ancho" styleClass="abmInput" value="#{consultarLayout.layout.ancho}" required="true" readonly="true"/>
+                            </td>
+                        </ice:panelGrid>
+                    </td>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="largo" id="lat2" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                    <span class="validator">
+                        <ice:message for="ancho" id="long2" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Observaciones"/>
+                </td>
+                <td>
+                    <ice:inputText id="observaciones"  partialSubmit="true" styleClass="abmInput" value="#{consultarLayout.layout.observaciones}" readonly="true"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Ventajas"/>
+                </td>
+                <td>
+                    <ice:inputText id="ventajas"  partialSubmit="true" styleClass="abmInput" value="#{consultarLayout.layout.ventajas}" readonly="true"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Disposici&#243;n"/>
+                </td>
+                <td>
+                    <ice:panelGrid styleClass="abm" binding="#{consultarLayout.panelGrid}"/>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="aceptar">
+
+                </td>
+                <td>
+                    <ice:commandButton  immediate="true" action="#{consultarLayout.actionCancelar}" id="cancelar" type="submit" value="Cancelar" image="/resources/icons/buttons/volver.png" />
+                </td>
+            </tr>
+        </table>
+  </f:subview>
+</div>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : eliminarSintoma
+    Created on : 29-ago-2009, 13:20:21
+    Author     : carranza.matias
+-->
+
+<div style="-rave-layout: grid; " xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="eliminarSintoma">
+        <table class="abm" width="100%">
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Denominaci&#243;n"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputDenomSintoma" required="true" styleClass="abmInput" readonly="true"
+                    value="#{eliminarSintoma.sintoma.denominacion}" size="10" maxlength="100" />
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Descripci&#243;n"/>
+                </td>
+                <td>
+                    <ice:inputTextarea id="inputDescSintoma" readonly="true" styleClass="abmInput" required="true"
+                    value="#{eliminarSintoma.sintoma.descripcion}"/>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Observaciones"/>
+                </td>
+                <td>
+                    <ice:inputTextarea  styleClass="abmInput" readonly="true" id="inputObs" value="#{eliminarSintoma.sintoma.observaciones}"/>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:inputText id ="sintomaDefault" rendered="false"/>
+                        <ice:message for="sintomaDefault" id="msintomaDefault" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="aceptar">
+                    <ice:commandButton id="aceptar" value="Aceptar" action="#{eliminarSintoma.actionAceptar}" type="submit" image="/resources/icons/buttons/eliminar.png" />
+                </td>
+                <td>
+                    <ice:commandButton immediate="true" id="cancelar" value="Cancelar" action="#{eliminarSintoma.actionCancelar}" type="submit" image="/resources/icons/buttons/Cancelar.png"/>
+                </td>
+            </tr>
+        </table>
+    </f:subview>
+</div>

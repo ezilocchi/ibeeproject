@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : agregarMiembroFamilia
+    Created on : 09-oct-2009, 19:13:44
+    Author     : burni.matias
+-->
+
+<div style="-rave-layout: grid; " xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="agregarMiembroFamilia">
+        <table class="abm" width="100%">
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Denominaci&#243;n (*)"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputDenomMiembroFamilia" required="true" styleClass="abmInput"
+                                   value="#{agregarMiembroFamilia.miembroFamilia.denominacion}" partialSubmit="true">
+                        <f:validateLength minimum="3" maximum="100" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputDenomMiembroFamilia" id="mDenom" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Tipo de Abeja (*)"/>
+                </td>
+                <td>
+                    <ice:selectOneMenu value="#{agregarMiembroFamilia.miembroFamilia.tipoAbeja.idTipoAbeja}" id="TipoAbejaCombo" title="TipoAbeja" styleClass="abmInput">
+                        <f:selectItems  value="#{MiembrosFamilia.tiposAbeja}" />
+                    </ice:selectOneMenu>
+                </td>
+                <td class="extension">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Cantidad (*)"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputCantidad" required="true" styleClass="abmInput"
+                                   value="#{agregarMiembroFamilia.miembroFamilia.cantidad}" partialSubmit="true">
+                        <f:validateLength minimum="1" maximum="15" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputCantidad" id="mCantidad" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Fecha de Nacimiento"/>
+                </td>
+                <td>
+                    <ice:selectInputDate value="#{agregarMiembroFamilia.miembroFamilia.fechaNacimiento}" highlightUnit="DAY_OF_YEAR" highlightValue="1" renderAsPopup="true">
+                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                    </ice:selectInputDate>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Fecha de Alta"/>
+                </td>
+                <td>
+                    <ice:selectInputDate value="#{agregarMiembroFamilia.miembroFamilia.fechaAlta}" highlightUnit="DAY_OF_YEAR" highlightValue="1" renderAsPopup="true">
+                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                    </ice:selectInputDate>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="aceptar">
+                    <ice:commandButton id="aceptar" value="Aceptar" action="#{agregarMiembroFamilia.actionAceptar}" type="submit" image="/resources/icons/buttons/nuevo.png" />
+                </td>
+                <td>
+                    <ice:commandButton immediate="true" id="cancelar" value="Cancelar" action="#{agregarMiembroFamilia.actionCancelar}" type="submit" image="/resources/icons/buttons/Cancelar.png" />
+                </td>
+            </tr>
+        </table>
+    </f:subview>
+</div>

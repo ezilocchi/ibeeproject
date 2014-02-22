@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : googleMap
+    Created on : 30-jun-2009, 21:27:51
+    Author     : farias.facundo
+-->
+<div style="-rave-layout: grid; vertical-align: top; width: 500px; height: 500px;" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:m="http://code.google.com/p/gmaps4jsf/">
+    <f:verbatim>
+        <![CDATA[
+        <script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAbSzQ9VpZQwenDnv2GOzjYBS0mfbAkUOhKCwVmgIpLk6yLG9CCBReWtkTVanbYdV5orUhEeUGOvaLsA">
+        </script>
+        ]]>
+    </f:verbatim>
+    <f:subview id="googleMap" rendered="#{googleMap.render}">
+        <m:map rendered="true" binding="#{googleMap.myMap}" zoom="9" id="mapa" renderOnWindowLoad="false" >
+            <m:mapControl id="largectrl" name="GLargeMapControl" rendered="#{googleMap.showControls}"/>
+            <m:mapControl id="scalectrl" name="GScaleControl" rendered="#{googleMap.showControls}"/>
+            <m:mapControl id="typectrl" name="GMapTypeControl" rendered="#{googleMap.showControls}"/>
+        </m:map>
+    </f:subview>
+</div>

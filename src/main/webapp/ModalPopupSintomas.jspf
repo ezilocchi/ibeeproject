@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : ModalPopupSintomas
+    Created on : 29-ago-2009, 18:26:02
+    Author     : farias.facundo
+-->
+
+<div xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:jsp="http://java.sun.com/JSP/Page">
+    <f:subview id="ModalPopupSintomas">
+        <html id="outputHtml1">
+            <head id="outputHead1">
+            </head>
+            <body id="outputBody1" style="-rave-layout: grid">
+                <ice:form id="formSint">
+                    <ice:panelPopup binding="#{ModalPopupSintomas.panelPopup1}" draggable="true" id="panelPopup1" rendered="#{ModalPopupSintomas.panelPopup1Bean.showDraggablePanel}"
+                                    styleClass="corePopup" visible="#{ModalPopupSintomas.panelPopup1Bean.showModalPanel}" modal="true">
+                        <f:facet name="header">
+                            <ice:panelGroup styleClass="popupHeaderWrapper">
+                                <ice:outputText id="outputText1" value="#{ModalPopupSintomas.title}" styleClass="popupHeaderText"/>
+                                <ice:commandButton id="modalPnlCloseBtn" type="button"
+                                                   image="resources/rime/css-images/cal_off.gif" styleClass="popupHeaderImage"
+                                                   title="Close Popup" alt="Close" action="#{ModalPopupSintomas.cerrarPopup}"/>
+                            </ice:panelGroup>
+                        </f:facet>
+                        <f:facet name="body">
+                            <ice:panelGrid id="panelGrid2" style="display:block;width:180px;height:80px;" styleClass="popupTextBody">
+                                <ice:outputLabel value="Seleccione el Sintoma que desea agregar:" styleClass="abmImput"/>
+                                <br/>
+                                <ice:selectOneMenu value="#{ModalPopupSintomas.sintoma}" id="Sint01" title="Crit" styleClass="popupTextBody" required="true" >
+                                    <f:selectItems  value="#{Enfermedades.sintomas}" />
+                                </ice:selectOneMenu>
+                                <br/>
+                                <ice:panelGroup style="width: 100%;">
+                                    <ice:commandButton value="Aceptar" styleClass="popupButtonAcept buttonAccept floatRight" action="#{ModalPopupSintomas.acepta}"/>
+                                    <ice:commandButton value="Cancelar" styleClass="popupButtonCancel buttonCancel floatLeft" action="#{ModalPopupSintomas.cancela}"/>
+                                </ice:panelGroup>
+                                <br/>
+                                <ice:commandButton value="Nuevos Sintomas" styleClass="buttonAdd floatRight" action="#{ModalPopupSintomas.linkSintomas}"/>
+                                <br/>
+                            </ice:panelGrid>
+                        </f:facet>
+                    </ice:panelPopup>
+                </ice:form>
+            </body>
+        </html>
+    </f:subview>
+</div>

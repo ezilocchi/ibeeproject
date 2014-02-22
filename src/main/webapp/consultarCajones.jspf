@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : consultarCajones
+    Created on : 26-ago-2009, 18:40:06
+    Author     : farias.facundo
+-->
+<div style="-rave-layout: grid;" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="consultarCajones">
+        <div  class="headerTable">
+            <ice:commandButton action="#{consultarCajones.add_action}"  id="btn_add"
+                styleClass="buttonAdd floatRight" value="Agregar Caj&#243;n" />
+                
+            <!-- Paginator -->
+                <ice:dataPaginator id="dataScrollCaj"
+                                   for="dataTableCaj"
+                                   paginator="true"
+                                   fastStep="2"
+                               paginatorMaxPages="5"
+                               styleClass="floatLeft">
+                <f:facet name="first">
+                    <ice:graphicImage
+                        url="./xmlhttp/css/rime/css-images/arrow-first.gif"
+                        style="border:none;"
+                        title="First Page"/>
+                </f:facet>
+                <f:facet name="last">
+                    <ice:graphicImage
+                        url="./xmlhttp/css/rime/css-images/arrow-last.gif"
+                        style="border:none;"
+                        title="Last Page"/>
+                </f:facet>
+                <f:facet name="previous">
+                    <ice:graphicImage
+                        url="./xmlhttp/css/rime/css-images/arrow-previous.gif"
+                        style="border:none;"
+                        title="Previous Page"/>
+                </f:facet>
+                <f:facet name="next">
+                    <ice:graphicImage
+                        url="./xmlhttp/css/rime/css-images/arrow-next.gif"
+                        style="border:none;"
+                        title="Next Page"/>
+                </f:facet>
+                <f:facet name="fastforward">
+                    <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-ff.gif"
+                                      style="border:none;"
+                                      title="Fast Forward"/>
+                </f:facet>
+                <f:facet name="fastrewind">
+                    <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-fr.gif"
+                                      style="border:none;"
+                                      title="Fast Backwards"/>
+                </f:facet>
+            </ice:dataPaginator>
+        </div>
+
+        <!-- Data Table -->
+
+        <ice:dataTable columnClasses="rowTable" headerClass="hdrTable" id="dataTableCaj" rowClasses="rowTable" title="Cajones"
+                       value="#{consultarCajones.cajones}" var="currentRow" width="100%" rows="4">
+            <ice:column id="column1" style="text-align: center;">
+                <ice:outputText id="outputText1" value="#{currentRow['nroCajon']}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText2" value="Nro Caj&#243;n"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column2" style="text-align: center;">
+                <ice:outputText id="outputText3" value="#{currentRow['descripcion']}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText4" value="Descripci&#243;n"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column3" style="text-align: center;">
+                <ice:graphicImage id="iconito" value="#{currentRow['estado'].iconEstado}" title="#{currentRow['estado'].estado}" />
+                <f:facet name="header">
+                    <ice:outputText id="outputText6" value="Estado"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column4" style="text-align: center;">
+                <ice:outputText id="outputText7" value="#{currentRow['tipoCajon'].denominacion}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText8" value="Tipo de Caj&#243;n"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column5" style="text-align: center;">
+                <ice:outputText id="outputcantidadAlzas" value="#{currentRow['cantidadAlzas']}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputcantidadAlzas1" value="Cantidad de Alzas"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column6" style="text-align: center;">
+                <ice:outputText id="outputmarcosPorAlza" value="#{currentRow['marcosPorAlza']}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputmarcosPorAlza1" value="Marcos por Alza"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column7" styleClass="columnaAciones">
+                <ice:commandButton action="#{consultarCajones.modif_action}" id="btn_modif" styleClass="buttonEdit" title="editar" value="Modificar"/>
+                <ice:commandButton action="#{consultarCajones.delete_action}" id="btn_elim" styleClass="buttonDelete" title="eliminar" value="Eliminar"/>
+                <ice:commandButton action="#{consultarCajones.query_action}" id="btn_ver" styleClass="buttonInfo" title="consultar" value="Consultar"/>
+                <f:param value="#{currentRow}" binding="#{consultarCajones.parametro}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText14" value="Acciones"/>
+                </f:facet>
+            </ice:column>
+        </ice:dataTable>
+    </f:subview>
+</div>

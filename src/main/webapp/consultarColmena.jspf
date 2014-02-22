@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : consultarColmena
+    Created on : 30-ago-2009, 17:37:12
+    Author     : carranza.matias
+-->
+<div style="-rave-layout: grid; " xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="consultarColmena">
+        <table class="abm" width="100%">
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Denominaci&#243;n"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputDenomColmena" partialSubmit="true" readonly="true" styleClass="abmInput" value="#{consultarColmena.colmena.denominacion}"/>
+                </td>
+                <td class="extension">
+                    <ice:commandButton id="ver_estados" value="Ver Historial de Estados" styleClass="buttonAdd" action="#{consultarColmena.verHistoriales}" immediate="true"/>
+                </td>
+            </tr>
+            <tr>
+                <td/>
+                <td colspan="2">
+                    <span class="validator"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Fecha Alta"/>
+                </td>
+                <td>
+                    <ice:inputText readonly="true"  id="fecha" value="#{consultarColmena.colmena.fechaAlta}">
+                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td/>
+                <td colspan="2">
+                    <span class="validator"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Familia"/>
+                </td>
+                <td>
+                    <ice:inputText id="familia" readonly="true" styleClass="abmInput" value="#{consultarColmena.colmena.familia.denominacion}"/>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td/>
+                <td colspan="2">
+                    <span class="validator"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Tipo Miel"/>
+                </td>
+                <td>
+                    <ice:inputText id="tipoMiel" readonly="true" styleClass="abmInput" value="#{consultarColmena.colmena.tipoMiel.denominacion}"/>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td/>
+                <td colspan="2">
+                    <span class="validator"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Caj&#243;n"/>
+                </td>
+                <td>
+                    <ice:inputText id="cajon" readonly="true" styleClass="abmInput" value="#{consultarColmena.colmena.cajon.descripcion}"/>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td/>
+                <td colspan="2">
+                    <span class="validator"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Estado"/>
+                </td>
+                <td>
+                    <ice:inputText id="estado" readonly="true" styleClass="abmInput" value="#{consultarColmena.colmena.estado.denominacion}"/>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td/>
+                <td colspan="2">
+                    <span class="validator"/>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="aceptar"/>
+                <td>
+                    <ice:commandButton action="#{consultarColmena.actionVolver}" id="volver" image="/resources/icons/buttons/volver.png" type="submit" value="Volver"/>
+                </td>
+            </tr>
+        </table>
+    </f:subview>
+</div>

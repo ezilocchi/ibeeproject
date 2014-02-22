@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : consultarColmenas
+    Created on : 30-ago-2009, 17:10:38
+    Author     : carranza.matias
+-->
+
+<div style="-rave-layout: grid;" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="consultarColmenas">
+        <div class="headerTable">
+            <ice:commandButton action="#{consultarColmenas.add_action}" id="btn_add" styleClass="buttonAdd floatRight" value="Agregar Colmena" />
+
+            <!-- Paginator -->
+                <ice:dataPaginator id="dataScrollColmenas"
+                                   for="dataTableColmenas"
+                                   paginator="true"
+                                   fastStep="2"
+                               paginatorMaxPages="5" styleClass="floatLeft">
+                <f:facet name="first">
+                    <ice:graphicImage
+                        url="./xmlhttp/css/rime/css-images/arrow-first.gif"
+                        style="border:none;"
+                        title="First Page"/>
+                </f:facet>
+                <f:facet name="last">
+                    <ice:graphicImage
+                        url="./xmlhttp/css/rime/css-images/arrow-last.gif"
+                        style="border:none;"
+                        title="Last Page"/>
+                </f:facet>
+                <f:facet name="previous">
+                    <ice:graphicImage
+                        url="./xmlhttp/css/rime/css-images/arrow-previous.gif"
+                        style="border:none;"
+                        title="Previous Page"/>
+                </f:facet>
+                <f:facet name="next">
+                    <ice:graphicImage
+                        url="./xmlhttp/css/rime/css-images/arrow-next.gif"
+                        style="border:none;"
+                        title="Next Page"/>
+                </f:facet>
+                <f:facet name="fastforward">
+                    <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-ff.gif"
+                                      style="border:none;"
+                                      title="Fast Forward"/>
+                </f:facet>
+                <f:facet name="fastrewind">
+                    <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-fr.gif"
+                                      style="border:none;"
+                                      title="Fast Backwards"/>
+                </f:facet>
+            </ice:dataPaginator>
+        </div>
+        <ice:dataTable columnClasses="rowTable" headerClass="hdrTable" id="dataTableColmenas" rowClasses="rowTable"
+                       title="Colmenas" value="#{consultarColmenas.colmenas}" var="currentRow" width="100%" rows="5">
+            <ice:column id="column1" style="text-align: center;">
+                <ice:outputText id="outputText1" value="#{currentRow['idColmena']}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText2" value="Nro Colmena"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column2" style="text-align: center;">
+                <ice:outputText id="outputText3" value="#{currentRow['denominacion']}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText4" value="Denominaci&#243;n"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column3" style="text-align: center;">
+                <ice:outputText id="outputText5" value="#{currentRow['familia'].denominacion}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText6" value="Familia"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column4" style="text-align: center;">
+                <ice:outputText id="outputText7" value="#{currentRow['fechaAlta']}">
+                    <f:convertDateTime pattern="dd-MMM-yyyy" />
+                </ice:outputText>
+                <f:facet name="header">
+                    <ice:outputText id="outputText8" value="Fecha de Alta"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column5" style="text-align: center;">
+                <ice:outputText id="outputText9" value="#{currentRow['tipoMiel'].denominacion}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText10" value="Tipo de Miel"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column6" style="text-align: center;">
+                <ice:graphicImage id="iconito" value="#{currentRow['estado'].iconEstado}" title="#{currentRow['estado'].denominacion}" />
+                <f:facet name="header">
+                    <ice:outputText id="outputText12" value="Estado"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column7" styleClass="columnaAciones">
+                <ice:commandButton action="#{consultarColmenas.modif_action}" id="btn_modif" styleClass="buttonEdit" title="editar" value="Modificar"/>
+                <ice:commandButton action="#{consultarColmenas.delete_action}" id="btn_elim" styleClass="buttonDelete" title="eliminar" value="Eliminar"/>
+                <ice:commandButton action="#{consultarColmenas.query_action}" id="btn_ver" styleClass="buttonInfo" title="consultar" value="Consultar"/>
+                <f:param value="#{currentRow}" binding="#{consultarColmenas.parametro}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText14" value="Acciones"/>
+                </f:facet>
+            </ice:column>
+        </ice:dataTable>
+    </f:subview>
+</div>

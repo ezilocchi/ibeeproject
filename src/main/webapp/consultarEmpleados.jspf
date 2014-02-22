@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : consultarEmpleados
+    Created on : 30-ene-2010, 14:48:03
+    Author     : burni.matias
+-->
+
+<div style="-rave-layout: grid;" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="consultarEmpleados">
+        <div  class="headerTable">
+            <ice:commandButton action="#{consultarEmpleados.add_action}" id="btn_add" styleClass="buttonAdd floatRight" value="Agregar Usuario" />
+
+            <!-- Paginator -->
+                <ice:dataPaginator id="dataScrollEnf"
+                                   for="dataTableEnf"
+                                   paginator="true"
+                                   fastStep="3"
+                               paginatorMaxPages="5"
+                               styleClass="floatLeft">
+                <f:facet name="first">
+                    <ice:graphicImage
+                        url="./xmlhttp/css/rime/css-images/arrow-first.gif"
+                        style="border:none;"
+                        title="First Page"/>
+                </f:facet>
+                <f:facet name="last">
+                    <ice:graphicImage
+                        url="./xmlhttp/css/rime/css-images/arrow-last.gif"
+                        style="border:none;"
+                        title="Last Page"/>
+                </f:facet>
+                <f:facet name="previous">
+                    <ice:graphicImage
+                        url="./xmlhttp/css/rime/css-images/arrow-previous.gif"
+                        style="border:none;"
+                        title="Previous Page"/>
+                </f:facet>
+                <f:facet name="next">
+                    <ice:graphicImage
+                        url="./xmlhttp/css/rime/css-images/arrow-next.gif"
+                        style="border:none;"
+                        title="Next Page"/>
+                </f:facet>
+                <f:facet name="fastforward">
+                    <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-ff.gif"
+                                      style="border:none;"
+                                      title="Fast Forward"/>
+                </f:facet>
+                <f:facet name="fastrewind">
+                    <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-fr.gif"
+                                      style="border:none;"
+                                      title="Fast Backwards"/>
+                </f:facet>
+            </ice:dataPaginator>
+        </div>
+
+        <!-- Data Table -->
+
+        <ice:dataTable columnClasses="rowTable" headerClass="hdrTable" id="dataTableEnf" rowClasses="rowTable"
+                       title="Usuarios" value="#{consultarEmpleados.empleados}" var="currentRow" width="100%" rows="5">
+            <ice:column id="column1">
+                <ice:outputText id="outputText1" value="#{currentRow['legajo']}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText2" value="Legajo"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column2">
+                <ice:outputText id="outputText3" value="#{currentRow['apellido']}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText4" value="Apellido"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column3">
+                <ice:outputText id="outputText5" value="#{currentRow['nombre']}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText6" value="Nombre"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column4">
+                <ice:outputText id="outputText7" value="#{currentRow['estado'].estado}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText8" value="Estado"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column5">
+                <ice:outputText id="outputText9" value="#{currentRow['cargo'].descripcion}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText10" value="Cargo"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column6">
+                <ice:outputText id="outputText11" value="#{currentRow['usuario']}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText12" value="Usuario"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column7" styleClass="columnaAciones">
+                <ice:commandButton action="#{consultarEmpleados.modif_action}" id="btn_modif" styleClass="buttonEdit" title="editar" value="Modificar"/>
+                <ice:commandButton action="#{consultarEmpleados.delete_action}" id="btn_elim" styleClass="buttonDelete" title="eliminar" value="Eliminar"/>
+                <ice:commandButton action="#{consultarEmpleados.query_action}" id="btn_ver" styleClass="buttonInfo" title="consultar" value="Consultar" />
+                <f:param value="#{currentRow}" binding="#{consultarEmpleados.parametro}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText14" value="Acciones"/>
+                </f:facet>
+            </ice:column>
+        </ice:dataTable>
+    </f:subview>
+</div>

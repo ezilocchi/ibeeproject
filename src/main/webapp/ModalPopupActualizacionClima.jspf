@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : ModalPopupActualizacionClima
+    Created on : 24/03/2010, 13:43:18
+    Author     : erro.gonzalo
+-->
+
+<div xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component"
+     xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:m="http://code.google.com/p/gmaps4jsf/">
+    <f:subview id="ModalPopupActualizacionClima">
+        <html id="outputHtml1">
+            <head id="outputHead1">
+                <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+                <f:verbatim>
+                    <![CDATA[
+                    <script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAbSzQ9VpZQwenDnv2GOzjYBS0mfbAkUOhKCwVmgIpLk6yLG9CCBReWtkTVanbYdV5orUhEeUGOvaLsA">
+                    </script>
+                    ]]>
+                </f:verbatim>
+            </head>
+            <body id="outputBody1" style="-rave-layout: grid" onunload="GUnload()">
+                <ice:form id="form1">
+                    <ice:panelPopup binding="#{ModalPopupActualizacionClima.panelPopup1}" draggable="true" id="panelPopup1" rendered="#{ModalPopupActualizacionClima.panelPopup1Bean.showDraggablePanel}"
+                                    styleClass="corePopup" visible="#{ModalPopupActualizacionClima.panelPopup1Bean.showModalPanel}" modal="true">
+                        <f:facet name="header">
+                            <ice:panelGroup styleClass="popupHeaderWrapper">
+                                <ice:outputText id="outputText1" value="#{ModalPopupActualizacionClima.title}" styleClass="popupHeaderText" rendered="true"/>
+                                <ice:commandButton id="modalPnlCloseBtn" type="button"
+                                                   image="resources/rime/css-images/cal_off.gif" styleClass="popupHeaderImage"
+                                                   title="Close Popup" alt="Close" action="#{ModalPopupActualizacionClima.cerrarPopup}"/>
+                            </ice:panelGroup>
+                        </f:facet>
+                        <f:facet name="body">
+                            <ice:panelGrid id="panelGrid2" styleClass="popupTextBody" style="width: 100%;">
+                                <ice:outputProgress  value="#{ModalPopupActualizacionClima.percent}" id="progessbar" rendered="true" indeterminate="false" />
+                                <ice:outputText id="log" value="Actualizando Climas... " style="width: 100%;"/>
+                                <table>
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <ice:commandButton id="accept" value="Aceptar" styleClass="floatRight buttonAccept" partialSubmit="true"
+                                                               action="#{ModalPopupActualizacionClima.acepta}" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </ice:panelGrid>
+                        </f:facet>
+                    </ice:panelPopup>
+
+                </ice:form>
+            </body>
+        </html>
+    </f:subview>
+</div>
+

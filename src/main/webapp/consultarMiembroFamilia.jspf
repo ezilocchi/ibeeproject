@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : consultarMiembroFamilia
+    Created on : 09-oct-2009, 20:12:09
+    Author     : burni.matias
+-->
+
+<div style="-rave-layout: grid; " xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="consultarMiembroFamilia">
+        <table class="abm" width="100%">
+
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Nro Miembro"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputIdMiembroFamilia" readonly="true" styleClass="abmInput"
+                                   value="#{consultarMiembroFamilia.miembroFamilia.idMiembroFamilia}" partialSubmit="true">
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Denominaci&#243;n"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputDenomMiembroFamilia" readonly="true" styleClass="abmInput"
+                                   value="#{consultarMiembroFamilia.miembroFamilia.denominacion}" partialSubmit="true">
+                        <f:validateLength minimum="3" maximum="25" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Tipo de Abeja"/>
+                </td>
+                <td>
+                    <ice:inputText value="#{consultarMiembroFamilia.miembroFamilia.tipoAbeja.demonimacion}" readonly="true" id="TipoAbejaCombo" title="TipoAbeja" styleClass="abmInput">
+                    </ice:inputText>
+                </td>
+                <td class="extension">
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Cantidad"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputCantidad" readonly="true" styleClass="abmInput"
+                                   value="#{consultarMiembroFamilia.miembroFamilia.cantidad}" partialSubmit="true">
+                        <f:validateLength minimum="1" maximum="15" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Fecha de Nacimiento"/>
+                </td>
+                <td>
+                    <ice:selectInputDate value="#{consultarMiembroFamilia.miembroFamilia.fechaNacimiento}" readonly="true" highlightUnit="DAY_OF_YEAR" highlightValue="1" renderAsPopup="true">
+                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                    </ice:selectInputDate>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Fecha de Alta"/>
+                </td>
+                <td>
+                    <ice:selectInputDate value="#{consultarMiembroFamilia.miembroFamilia.fechaAlta}" readonly="true" highlightUnit="DAY_OF_YEAR" highlightValue="1" renderAsPopup="true">
+                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                    </ice:selectInputDate>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                </td>
+                <td>
+                    <ice:commandButton id="cancelar" value="Volver" image="/resources/icons/buttons/volver.png" action="#{consultarMiembroFamilia.actionVolver}" type="submit"/>
+                </td>
+            </tr>
+        </table>
+    </f:subview>
+</div>

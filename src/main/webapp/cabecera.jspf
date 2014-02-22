@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : cabecera
+    Created on : 27-jun-2009, 18:26:53
+    Author     : farias.facundo
+-->
+<div xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="cabecera">
+        <div id="utility">
+            <ice:form><ice:outputLabel style="color: black; font-weight: bolder;" value="#{cabecera.sessionBean1.empleado.apellido}, #{cabecera.sessionBean1.empleado.nombre}" /> <ice:outputLabel value="[#{cabecera.sessionBean1.empleado.usuario} - #{cabecera.sessionBean1.empleado.cargo.descripcion}]" /> |
+            <ice:commandLink action="#{cabecera.logout}" value="Logout" /></ice:form>
+        </div>
+        <div id="form5" style="left: 1%;right: 1%; top: 14.4%; position: absolute ; background-color: #FFFFFF;height:9%; ">
+            <img alt="" height="10" id="tl" src="resources/tl_curve_white.gif" width="10"/>
+            <img alt="" height="10" id="tr" src="resources/tr_curve_white.gif" width="10"/>
+            <img src="resources/icono.gif" style="float: right; width: 60px; margin-top: 4px; margin-right: 4px;" />
+            <ice:outputLabel style="padding-left: 1.5%; color: #AAAAAA;" title="Cabecera" value="iBee"/>
+            <div  style="padding-left: 13px; padding-top: 4px;">
+                <ice:outputLabel style="font-family: Arial,sans-serif; font:bold 110% Arial,sans-serif; left: 5px; top:40px" title="subCabecera1" value="#{cabecera.path}"/>
+            </div>
+        </div>
+
+    </f:subview>
+</div>

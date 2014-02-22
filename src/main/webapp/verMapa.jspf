@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : verMapa
+    Created on : 30-jun-2009, 21:27:51
+    Author     : farias.facundo
+-->
+<div style="-rave-layout: grid; vertical-align: top; width: 500px; height: 500px;" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:jsp="http://java.sun.com/JSP/Page">
+    <script
+        src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAbSzQ9VpZQwenDnv2GOzjYBS0mfbAkUOhKCwVmgIpLk6yLG9CCBReWtkTVanbYdV5orUhEeUGOvaLsA" type="text/javascript"></script>
+    <f:subview id="verMapa" rendered="true">
+        <ice:gMap latitude="-31.38" longitude="-64.18" rendered="true" styleClass="iceGmpMapTd" zoomLevel="9">
+            <ice:gMapControl id="largectrl" name="GLargeMapControl" rendered="#{gmap.showControls}"/>
+            <ice:gMapControl id="scalectrl" name="GScaleControl" rendered="#{gmap.showControls}"/>
+            <ice:gMapControl id="typectrl" name="GMapTypeControl" rendered="#{gmap.showControls}"/>
+            <ice:gMapMarker id="gmarker" latitude="-31" longitude="-64"  rendered="#{gmap.showMarkers}">
+                <ice:gMapLatLng id="glatlng" latitude="-31.38" longitude="-64.18"/>
+                <ice:gMapLatLngs id="gmappnt" value="#{gmap.points}"/>
+            </ice:gMapMarker>
+            <ice:gMapGeoXml  url="http://localhost:8181/iBeeProject/KML_Samples.kml"/>
+          </ice:gMap>
+    </f:subview>
+</div>

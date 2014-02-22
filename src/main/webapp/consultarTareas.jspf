@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : consultarTareas
+    Created on : 06-abr-2010, 20:44:45
+    Author     : farias.facundo
+-->
+
+<div style="-rave-layout: grid;" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="consultarTareas">
+        <div class="headerTable">
+            <div style="border: 1px solid ; margin: 3px; padding: 2px;">
+                <ice:outputLabel value="Filtros" styleClass="floatLeft" />
+                <ice:commandButton action="#{consultarTareas.todos_action}" styleClass="buttonAdd" value="Todas" />
+                <ice:commandButton action="#{consultarTareas.pendientes_action}" styleClass="buttonAdd" value="Pendientes" />
+                <ice:commandButton action="#{consultarTareas.resueltos_action}" styleClass="buttonAdd" value="Resueltas" />
+                <ice:commandButton action="#{consultarTareas.anulados_action}" styleClass="buttonAdd" value="Anuladas" />
+            </div>
+            <!-- Paginator -->
+            <ice:dataPaginator fastStep="3" for="dataTableTar" id="dataScrollTar" paginator="true" paginatorMaxPages="10" styleClass="floatLeft">
+                <f:facet name="first">
+                    <ice:graphicImage style="border:none;" title="First Page" url="./xmlhttp/css/rime/css-images/arrow-first.gif"/>
+                </f:facet>
+                <f:facet name="last">
+                    <ice:graphicImage style="border:none;" title="Last Page" url="./xmlhttp/css/rime/css-images/arrow-last.gif"/>
+                </f:facet>
+                <f:facet name="previous">
+                    <ice:graphicImage style="border:none;" title="Previous Page" url="./xmlhttp/css/rime/css-images/arrow-previous.gif"/>
+                </f:facet>
+                <f:facet name="next">
+                    <ice:graphicImage style="border:none;" title="Next Page" url="./xmlhttp/css/rime/css-images/arrow-next.gif"/>
+                </f:facet>
+                <f:facet name="fastforward">
+                    <ice:graphicImage style="border:none;" title="Fast Forward" url="./xmlhttp/css/rime/css-images/arrow-ff.gif"/>
+                </f:facet>
+                <f:facet name="fastrewind">
+                    <ice:graphicImage style="border:none;" title="Fast Backwards" url="./xmlhttp/css/rime/css-images/arrow-fr.gif"/>
+                </f:facet>
+            </ice:dataPaginator>
+        </div>
+
+        <!-- Data Table -->
+        <ice:dataTable columnClasses="rowTable" headerClass="hdrTable" id="dataTableTar" rowClasses="rowTable" rows="5" title="Tarea"
+                       value="#{consultarTareas.tareas}" var="currentRow" width="100%">
+            <ice:column id="column1" style="text-align: center;">
+                <ice:outputText id="outputText1" value="#{currentRow['descripcion']}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText2" value="Denominaci&#243;n"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column2" style="text-align: center;">
+                <ice:outputText id="outputText3" value="#{currentRow['fechaPrevista']}">
+                    <f:convertDateTime pattern="dd-MMM-yyyy" />
+                </ice:outputText>
+                <f:facet name="header">
+                    <ice:outputText id="outputText4" value="Fecha Prevista"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column3" style="text-align: center;">
+                <ice:graphicImage id="outputText5" value="#{currentRow['estado'].iconEstado}" title="#{currentRow['estado'].descripcion}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText6" value="Estado"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column4" style="text-align: center;">
+                <ice:graphicImage id="iconito" value="#{currentRow['icon']}" title="#{currentRow['descrip']}" />
+                <f:facet name="header">
+                    <ice:outputText id="outputText8" value="Cumplimiento"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column5" style="text-align: center;">
+                <ice:outputText id="outputText9" value="#{currentRow['tipoTarea'].descripcion}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText10" value="Tipo de Tarea"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column6" styleClass="columnaAciones">
+                <ice:commandButton action="#{consultarTareas.resolverTareas}" id="btn_modif" styleClass="buttonEdit"
+                                   title="resolver" value="Resolver" rendered="#{consultarTareas.resolve}"/>
+                                   <ice:commandButton action="#{consultarTareas.anularTareas}" id="btn_elim" styleClass="buttonDelete"
+                                   title="anular" value="Anular" rendered="#{consultarTareas.resolve}"/>
+                <ice:commandButton action="#{consultarTareas.consultarTareas}" id="btn_ver" styleClass="buttonInfo"
+                                   title="consultar" value="Consultar" rendered="#{consultarTareas.readOnly}"/>
+                <f:param binding="#{consultarTareas.parametro}" value="#{currentRow}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText14" value="Acciones"/>
+                </f:facet>
+            </ice:column>
+        </ice:dataTable>
+        <span class="validator">
+            <ice:inputText id ="tareaDefault" rendered="false"/>
+            <ice:message for="tareaDefault" id="mtareaDefault" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+        </span>
+    </f:subview>
+</div>

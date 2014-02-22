@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : modificarActividad
+    Created on : 13-feb-2010, 15:23:28
+    Author     : farias.facundo
+-->
+
+<div style="-rave-layout: grid; " xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="modificarActividad">
+        <table class="abm" width="100%">
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Denominaci&#243;n (*):"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputDenom" required="true" styleClass="abmInput" readonly="true"
+                                   value="#{modificarActividad.actividad.denominacion}">
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputDenom" id="mCod" style="color:red; line-height:200%; background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px; padding-left:15px;"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Descripci&#243;n: "/>
+                </td>
+                <td>
+                    <ice:inputTextarea id="inputDescrip" required="true" styleClass="abmInput" readonly="true"
+                                       value="#{modificarActividad.actividad.descripcion}">
+                    </ice:inputTextarea>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputDescrip" id="mDenom" style="color:red; line-height:200%; background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px; padding-left:15px;"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Tipo de Actividad (*):"/>
+                </td>
+                <td>
+                    <ice:inputText value="#{Actividades.tiposDeActividad[modificarActividad.actividad.tipoActividad.numero].label}" id="tipoAct" title="Tipo de Act" styleClass="abmInput"
+                                   readonly="true" />
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="tipoAct" style="color:red; line-height:200%; background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px; padding-left:15px;"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Fecha Esperada de Cierre(*) :"/>
+                </td>
+                <td>
+                    <ice:selectInputDate id="fecha" value="#{modificarActividad.actividad.fechaEsperadaDeCierre}" required="true"
+                                         highlightUnit="DAY_OF_YEAR" highlightValue="1" renderAsPopup="true" readonly="true">
+                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                    </ice:selectInputDate>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="fecha" id="mFecha" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Observaciones: "/>
+                </td>
+                <td>
+                    <ice:inputTextarea id="inputObs" styleClass="abmInput"
+                                       value="#{modificarActividad.actividad.observaciones}">
+                    </ice:inputTextarea>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Tareas Relacionadas "/>
+                </td>
+                <td>
+                    <ice:dataTable value="#{modificarActividad.actividad.tareas}" var="tareas" width="100%">
+                        <ice:column id="column1" style="text-align: center;">
+                            <ice:outputText id="outputText1" value="#{tareas['idTarea']}"/>
+                            <f:facet name="header">
+                                <ice:outputText id="outputText2" value="Nro Tarea"/>
+                            </f:facet>
+                        </ice:column>
+                        <ice:column id="column2" style="text-align: center;">
+                            <ice:outputText id="outputText3" value="#{tareas['title']}"/>
+                            <f:facet name="header">
+                                <ice:outputText id="outputText4" value="Descripci&#243;n"/>
+                            </f:facet>
+                        </ice:column>
+                        <ice:column id="column3" style="text-align: center;">
+                            <ice:graphicImage id="outputText5" value="#{tareas['estado'].iconEstado}"  title="#{tareas['estado'].descripcion}"/>
+                            <f:facet name="header">
+                                <ice:outputText id="outputText6" value="Estado"/>
+                            </f:facet>
+                        </ice:column>
+                        <ice:column id="column5" styleClass="columnaAciones">
+                            <ice:commandButton value="Anular" styleClass="buttonDelete" action="#{modificarActividad.anularTareas}" 
+                            immediate="true" rendered="#{not modificarActividad.actividad.finalizada}"/>
+                            <ice:commandButton value="Resolver" styleClass="buttonEdit" action="#{modificarActividad.resolverTareas}" 
+                            immediate="true" rendered="#{not modificarActividad.actividad.finalizada}"/>
+                            <ice:commandButton value="Consultar" styleClass="buttonInfo" action="#{modificarActividad.consultarTareas}"
+                            immediate="true" rendered="#{modificarActividad.actividad.finalizada}"/>
+                            <f:param value="#{tareas}" binding="#{modificarActividad.parametro}"/>
+                            <f:facet name="header">
+                                <ice:outputText id="outputText9" value="Acciones"/>
+                            </f:facet>
+                        </ice:column>
+                    </ice:dataTable>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:inputText id ="actividadDefault" rendered="false"/>
+                        <ice:message for="actividadDefault" id="mactividadDefault" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="aceptar">
+                    <ice:commandButton id="aceptar" value="Aceptar" image="/resources/icons/buttons/nuevo.png"
+                                       action="#{modificarActividad.actionAceptar}" type="submit"/>
+                </td>
+                <td>
+                    <ice:commandButton id="cancelar" value="Cancelar" image="/resources/icons/buttons/Cancelar.png"
+                                       action="#{modificarActividad.actionCancelar}" immediate="true" type="submit"/>
+                </td>
+            </tr>
+        </table>
+    </f:subview>
+</div>

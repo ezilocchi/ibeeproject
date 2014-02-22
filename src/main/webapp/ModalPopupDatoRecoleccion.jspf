@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : ModalPopupDatoRecoleccion
+    Created on : 12-sep-2009, 14:03:16
+    Author     : farias.facundo
+-->
+
+<div xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:jsp="http://java.sun.com/JSP/Page" >
+    <f:subview id="ModalPopupDatoRecoleccion">
+        <html id="outputHtml1">
+            <head id="outputHead1">
+            </head>
+            <body id="outputBody1" style="-rave-layout: grid">
+                <ice:form id="formDatRec">
+                    <ice:panelPopup binding="#{ModalPopupDatoRecoleccion.panelPopup1}" draggable="true" id="panelPopup1" rendered="#{ModalPopupDatoRecoleccion.panelPopup1Bean.showDraggablePanel}"
+                                    style="width:400px;height:400px;"  styleClass="corePopup" visible="#{ModalPopupDatoRecoleccion.panelPopup1Bean.showModalPanel}" modal="true">
+                        <f:facet name="header">
+                            <ice:panelGroup styleClass="popupHeaderWrapper">
+                                <ice:outputText id="outputText1" value="#{ModalPopupDatoRecoleccion.title}" styleClass="popupHeaderText"/>
+                                <ice:commandButton id="modalPnlCloseBtn" type="button"
+                                                   image="resources/rime/css-images/cal_off.gif" styleClass="popupHeaderImage" immediate="true"
+                                                   title="Close Popup" alt="Close" action="#{ModalPopupDatoRecoleccion.cerrarPopup}"/>
+                            </ice:panelGroup>
+                        </f:facet>
+                        <f:facet name="body" >
+                            <ice:panelGrid id="panelGrid2" styleClass="popupTextBody2" >
+                                <div>
+                                    <ice:outputLabel value="Tipo de Actividad: #{ModalPopupDatoRecoleccion.codigoTipoActividad}" styleClass="descriptoresPopup abmInput"/><br/>
+                                    <ice:outputLabel value="Tipo de Tarea: #{ModalPopupDatoRecoleccion.codigoTipoTarea}"  styleClass="descriptoresPopup abmInput"/>
+                                    <ice:commandButton action="#{ModalPopupDatoRecoleccion.agregarDatoRecoleccion}" id="addpop" immediate="true" rendered="#{ModalPopupDatoRecoleccion.readOnly}"
+                                                       visible="true" title="Agregar Nuevo Dato" styleClass="floatRight buttonAdd" value="Agregar Datos de Recoleccion"/>
+                                </div>
+
+                                <!-- Paginator -->
+                <ice:dataPaginator id="dataScrollDatRec"
+                                   for="dataTableDatRec"
+                                   paginator="true"
+                                   fastStep="3"
+                                   paginatorMaxPages="5"
+                                   styleClass="floatLeft"
+                                                   rendered="#{not ModalPopupDatoRecoleccion.tableEmpty}">
+                                    <f:facet name="first">
+                                        <ice:graphicImage
+                                            url="./xmlhttp/css/rime/css-images/arrow-first.gif"
+                                            style="border:none;"
+                                            title="First Page"/>
+                                    </f:facet>
+                                    <f:facet name="last">
+                                        <ice:graphicImage
+                                            url="./xmlhttp/css/rime/css-images/arrow-last.gif"
+                                            style="border:none;"
+                                            title="Last Page"/>
+                                    </f:facet>
+                                    <f:facet name="previous">
+                                        <ice:graphicImage
+                                            url="./xmlhttp/css/rime/css-images/arrow-previous.gif"
+                                            style="border:none;"
+                                            title="Previous Page"/>
+                                    </f:facet>
+                                    <f:facet name="next">
+                                        <ice:graphicImage
+                                            url="./xmlhttp/css/rime/css-images/arrow-next.gif"
+                                            style="border:none;"
+                                            title="Next Page"/>
+                                    </f:facet>
+                                    <f:facet name="fastforward">
+                                        <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-ff.gif"
+                                                          style="border:none;"
+                                                          title="Fast Forward"/>
+                                    </f:facet>
+                                    <f:facet name="fastrewind">
+                                        <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-fr.gif"
+                                                          style="border:none;"
+                                                          title="Fast Backwards"/>
+                                    </f:facet>
+                                </ice:dataPaginator>
+                                <ice:panelGroup styleClass="clearer" rendered="#{ModalPopupDatoRecoleccion.tableEmpty}"/>
+                                <ice:outputLabel value=" No existen registros para mostrar. Para agregarlos seleccione la opci&#243;n agregar Nuevo Dato.- "  styleClass="descriptoresPopup" rendered="#{ModalPopupDatoRecoleccion.tableEmpty}"/>
+                                <ice:panelGroup styleClass="clearer" rendered="#{ModalPopupDatoRecoleccion.tableEmpty}"/>
+                                <ice:dataTable id="dataTableDatRec" value="#{ModalPopupDatoRecoleccion.datoRecoleccion}" var="datos" styleClass="abmInput" rows="2" width="100%" rendered="#{not ModalPopupDatoRecoleccion.tableEmpty}">
+                                    <ice:column id="column1">
+                                        <ice:outputText id="outputCod" value="#{datos.codigo}" rendered="#{not ModalPopupDatoRecoleccion.readOnly}"/>
+                                        <ice:inputText id="inputCod" value="#{datos.codigo}" required="true" rendered="#{ModalPopupDatoRecoleccion.readOnly}" partialSubmit="true"/>
+                                        <ice:message for="codTar" style="color:red; line-height:200%; background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px; padding-left:15px;"/>
+                                        <f:facet name="header">
+                                            <ice:outputText id="outputText2" value="C&#243;digo de Dato (*)"/>
+                                        </f:facet>
+                                    </ice:column>
+                                    <ice:column id="column2">
+                                        <ice:outputText id="outputNom" value="#{datos.nombreDato}" rendered="#{not ModalPopupDatoRecoleccion.readOnly}"/>
+                                        <ice:inputText id="inputNom" value="#{datos.nombreDato}" required="true" rendered="#{ModalPopupDatoRecoleccion.readOnly}" partialSubmit="true"/>
+                                        <ice:message for="inputNom" style="color:red; line-height:200%; background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px; padding-left:15px;"/>
+                                        <f:facet name="header">
+                                            <ice:outputText id="outputText4" value="Nombre de Dato (*)"/>
+                                        </f:facet>
+                                    </ice:column>
+                                    <ice:column id="column3">
+                                        <ice:outputText value="#{TiposDeActividad.tipoDatos[datos.tipoDato.numero-1].label}" title="Cargos"
+                                                        id="inputTipDat" styleClass="abmInput" rendered="#{not ModalPopupDatoRecoleccion.readOnly}" />
+                                        <ice:selectOneMenu value="#{datos.tipoDato.numero}" id="selTipDat" title="Cargos" styleClass="abmInput" partialSubmit="true"
+                                                           required="true" rendered="#{ModalPopupDatoRecoleccion.readOnly}" >
+                                            <f:selectItems value="#{TiposDeActividad.tipoDatos}" />
+                                        </ice:selectOneMenu>
+                                        <ice:message for="selTipDat" style="color:red; line-height:200%; background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px; padding-left:15px;"/>
+                                        <f:facet name="header">
+                                            <ice:outputText id="outputText5" value="Denominaci&#243;n (*) "/>
+                                        </f:facet>
+                                    </ice:column>
+                                    <ice:column id="column4">
+                                        <ice:outputText id="outputVal" value="#{datos.valoresPermitidos}" rendered="#{not ModalPopupDatoRecoleccion.readOnly}"/>
+                                        <ice:inputText id="inputVal" value="#{datos.valoresPermitidos}" rendered="#{ModalPopupDatoRecoleccion.readOnly}" partialSubmit="true"/>
+                                        <f:facet name="header">
+                                            <ice:outputText id="outputText7" value="Valores Permitidos "/>
+                                        </f:facet>
+                                    </ice:column>
+                                    <ice:column id="column5" rendered="#{ModalPopupDatoRecoleccion.readOnly}">
+                                        <ice:commandButton id="inputText8" value="Eliminar" rendered="#{ModalPopupDatoRecoleccion.readOnly}" partialSubmit="true"
+                                                           styleClass="buttonDelete" immediate="true" action="#{ModalPopupDatoRecoleccion.eliminarDatoRecoleccion}"/>
+                                        <f:param binding="#{ModalPopupDatoRecoleccion.parametro}" value="#{datos}"/>
+                                        <f:facet name="header">
+                                            <ice:outputText id="outputText9" value="Acciones"/>
+                                        </f:facet>
+                                    </ice:column>
+                                </ice:dataTable>
+                                <div>
+                                    <br/>
+                                    <ice:commandButton id="cancel" value="Cancelar" styleClass="floatRight buttonCancel" immediate="true"
+                                                       action="#{ModalPopupDatoRecoleccion.cancela}" rendered="#{ModalPopupDatoRecoleccion.readOnly}"/>
+                                    <ice:commandButton id="accept" value="Aceptar" styleClass="floatRight buttonAccept" immediate="true" partialSubmit="true"
+                                                       action="#{ModalPopupDatoRecoleccion.acepta}" />
+                                </div>
+                            </ice:panelGrid>
+                        </f:facet>
+                    </ice:panelPopup>
+                </ice:form>
+            </body>
+        </html>
+    </f:subview>
+</div>

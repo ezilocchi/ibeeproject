@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : modificarMiembroFamilia
+    Created on : 11-oct-2009, 15:03:39
+    Author     : burni.matias
+-->
+
+<div style="-rave-layout: grid; " xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="modificarMiembroFamilia">
+        <table class="abm" width="100%">
+
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Nro Miembro"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputIdMiembroFamilia" readonly="true" styleClass="abmInput"
+                                   value="#{modificarMiembroFamilia.miembroFamilia.idMiembroFamilia}" partialSubmit="true">
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Denominaci&#243;n"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputDenomMiembroFamilia" styleClass="abmInput"
+                                   value="#{modificarMiembroFamilia.miembroFamilia.denominacion}" partialSubmit="true">
+                        <f:validateLength minimum="3" maximum="100" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Tipo de Abeja (*)"/>
+                </td>
+                <td>
+                    <ice:selectOneMenu value="#{modificarMiembroFamilia.miembroFamilia.tipoAbeja.idTipoAbeja}" id="TipoAbejaCombo" title="TipoAbeja" styleClass="abmInput">
+                    <f:selectItems  value="#{MiembrosFamilia.tiposAbeja}" />
+                    </ice:selectOneMenu>
+                </td>
+                <td class="extension">
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Cantidad"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputCantidad" styleClass="abmInput"
+                                   value="#{modificarMiembroFamilia.miembroFamilia.cantidad}" partialSubmit="true">
+                        <f:validateLength minimum="1" maximum="15" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Fecha de Nacimiento"/>
+                </td>
+                <td>
+                    <ice:selectInputDate value="#{modificarMiembroFamilia.miembroFamilia.fechaNacimiento}" highlightUnit="DAY_OF_YEAR" highlightValue="1" renderAsPopup="true">
+                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                    </ice:selectInputDate>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Fecha de Alta"/>
+                </td>
+                <td>
+                    <ice:selectInputDate value="#{modificarMiembroFamilia.miembroFamilia.fechaAlta}" highlightUnit="DAY_OF_YEAR" highlightValue="1" renderAsPopup="true">
+                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                    </ice:selectInputDate>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="aceptar">
+                    <ice:commandButton id="aceptar" value="Aceptar" action="#{modificarMiembroFamilia.actionAceptar}" type="submit" image="/resources/icons/buttons/editar.png" />
+                </td>
+                <td>
+                    <ice:commandButton immediate="true" id="cancelar" value="Cancelar" action="#{modificarMiembroFamilia.actionCancelar}" type="submit" image="/resources/icons/buttons/Cancelar.png" />
+                </td>
+            </tr>
+        </table>
+    </f:subview>
+</div>

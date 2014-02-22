@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : ModalPopupPosicion
+    Created on : Sep 5, 2009, 11:55:39 AM
+    Author     : erro.gonzalo
+-->
+
+<div xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:jsp="http://java.sun.com/JSP/Page" >
+    <f:subview id="ModalPopupPosicion">
+        <html id="outputHtml1">
+            <head id="outputHead1">
+            </head>
+            <body id="outputBody1" style="-rave-layout: grid">
+                <ice:form id="formTrat">
+                    <ice:panelPopup binding="#{ModalPopupPosicion.panelPopup1}" draggable="true" id="panelPopup1" rendered="#{ModalPopupPosicion.panelPopup1Bean.showDraggablePanel}"
+                                    style="width:400px;height:400px;"  styleClass="corePopup" visible="#{ModalPopupPosicion.panelPopup1Bean.showModalPanel}" modal="true">
+                        <f:facet name="header">
+                            <ice:panelGroup styleClass="popupHeaderWrapper">
+                                <ice:outputText id="outputText1" value="#{ModalPopupPosicion.title}" styleClass="popupHeaderText"/>
+                                <ice:commandButton id="modalPnlCloseBtn" type="button"
+                                                   image="resources/rime/css-images/cal_off.gif" styleClass="popupHeaderImage"
+                                                   title="Close Popup" alt="Close" action="#{ModalPopupPosicion.cerrarPopup}"/>
+                            </ice:panelGroup>
+                        </f:facet>
+                        <f:facet name="body">
+                            <ice:panelGrid id="panelGrid1"   style="display:block;width:180px;height:80px;"  styleClass="popupTextBody">
+                                <ice:outputLabel value="Seleccione la colmena a posicionar:" styleClass="abmImput"/>
+                                <br/>
+                                <ice:selectOneMenu partialSubmit="true" value="#{agregarApiar.colmenaPosicionada}" styleClass="abmInput" >
+                                    <f:selectItems  value="#{agregarApiar.colmenasAsignadasCombo}" />
+                                </ice:selectOneMenu>
+                                <br/>
+                                <ice:panelGrid id="panelGrid3" binding="#{ModalPopupPosicion.panelPopup2}" styleClass="popupTextBody">
+
+                                </ice:panelGrid>
+                                <ice:panelGroup styleClass="abmInput">
+                                    <ice:commandButton id="cancel" value="Cancelar" styleClass="floatRight buttonCancel" immediate="true"
+                                                       action="#{ModalPopupPosicion.cancela}" />
+                                    <ice:commandButton immediate="true" value="Aceptar" styleClass="buttonAccept floatRight" action="#{ModalPopupPosicion.cerrarPopup}"/>
+                                </ice:panelGroup>
+                            </ice:panelGrid>
+                        </f:facet>
+                    </ice:panelPopup>
+                </ice:form>
+            </body>
+        </html>
+    </f:subview>
+</div>

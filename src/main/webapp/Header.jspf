@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : Header2
+    Created on : 27-jun-2009, 17:18:17
+    Author     : farias.facundo
+-->
+<div xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+    <f:subview id="Header">
+        <img alt="" height="32" id="gnl" src="./resources/gblnav_left.gif" width="4"/>
+        <img alt="" height="32" id="gnr" src="./resources/glbnav_right.gif" width="4"/>
+        <ice:menuBar action="#{Header.globalNav_action}" id="globalNav" styleClass="">
+            <ice:menuItem action="#{Header.Home_action}" id="Home" styleClass="iceCmdLnk1" value="Home"/>
+            <ice:menuItem action="#{Header.Produccion_action}" id="Produccion" styleClass="iceCmdLnk1" value="Producci&#243;n" rendered="#{Header.permisoProduccion}">
+                <ice:menuItem action="#{Header.Apiares_action}" icon="xmlhttp/css/rime/css-images/submenu.gif" id="Apiares" styleClass="iceCmdLnk1" value="Apiares" disabled="" rendered="#{Header.permisoApiares}"/>
+                <ice:menuItem action="#{Header.Colmenas_action}" icon="xmlhttp/css/rime/css-images/submenu.gif" id="Colmenas" styleClass="iceCmdLnk1" value="Colmenas" rendered="#{Header.permisoColmenas}"/>
+                <ice:menuItem action="#{Header.Familias_action}" icon="xmlhttp/css/rime/css-images/submenu.gif" id="Familias" styleClass="iceCmdLnk1" value="Familias" rendered="#{Header.permisoFamilias}"/>
+                <ice:menuItem action="#{Header.Cajones_action}" icon="xmlhttp/css/rime/css-images/submenu.gif" id="Cajones" styleClass="iceCmdLnk1" value="Cajones" rendered="#{Header.permisoCajones}"/>
+                <ice:menuItem action="#{Header.Layouts_action}" icon="xmlhttp/css/rime/css-images/submenu.gif" id="Layouts" styleClass="iceCmdLnk1" value="Layouts" rendered="#{Header.permisoLayouts}"/>
+            </ice:menuItem>
+            <ice:menuItem action="#{Header.Zona_action}" id="Zona" styleClass="iceCmdLnk1" value="Zonas" rendered="#{Header.permisoZona}">
+                <ice:menuItem action="#{Header.Zona_action}" icon="xmlhttp/css/rime/css-images/submenu.gif" id="Zonas" styleClass="iceCmdLnk1" value="Zonas" rendered="#{Header.permisoZonas}"/>
+                <ice:menuItem action="#{Header.Climas_action}" icon="xmlhttp/css/rime/css-images/submenu.gif" id="Climas" styleClass="iceCmdLnk1" value="Climas" rendered="#{Header.permisoClimas}">
+                    <ice:menuItem action="#{Header.ActualizacionClima_action}" icon="xmlhttp/css/rime/css-images/submenu.gif" id="ActualizacionClimas" styleClass="iceCmdLnk1" value="Actualizaci&#243;n" rendered="#{Header.permisoClimas}">
+                </ice:menuItem>
+                </ice:menuItem>
+              
+            </ice:menuItem>
+            <ice:menuItem action="#{Header.Actividad_action}" id="Actividad" styleClass="iceCmdLnk1" value="Actividades" rendered="#{Header.permisoActividad}">
+                <ice:menuItem action="#{Header.Actividades_action}" icon="xmlhttp/css/rime/css-images/submenu.gif" id="Actividades" styleClass="iceCmdLnk1" value="Actividades" rendered="#{Header.permisoActividades}"/>
+                <ice:menuItem action="#{Header.TiposDeActividad_action}" icon="xmlhttp/css/rime/css-images/submenu.gif" id="TiposDeActividad" styleClass="iceCmdLnk1" value="Tipos De Actividad" rendered="#{Header.permisoTiposDeActividad}"/>
+                <ice:menuItem action="#{Header.Tareas_action}" icon="xmlhttp/css/rime/css-images/submenu.gif" id="Tareas" styleClass="iceCmdLnk1" value="Tareas" rendered="#{Header.permisoTareas}"/>
+                
+            </ice:menuItem>
+            <ice:menuItem action="#{Header.Enfermedad_action}" id="Enfermedad" styleClass="iceCmdLnk1" value="Enfermedades" rendered="#{Header.permisoEnfermedad}">
+                <ice:menuItem action="#{Header.Enfermedades_action}" icon="xmlhttp/css/rime/css-images/submenu.gif" id="Enfermedades" styleClass="iceCmdLnk1" value="Enfermedades" rendered="#{Header.permisoEnfermedades}"/>
+                <ice:menuItem action="#{Header.Sintomas_action}" icon="xmlhttp/css/rime/css-images/submenu.gif" id="Sintomas" styleClass="iceCmdLnk1" value="S&#237;ntomas" rendered="#{Header.permisoSintomas}"/>
+                <ice:menuItem action="#{Header.Tratamientos_action}" icon="xmlhttp/css/rime/css-images/submenu.gif" id="Tratamientos" styleClass="iceCmdLnk1" value="Tratamientos" rendered="#{Header.permisoTratamientos}"/>
+            </ice:menuItem>
+            <ice:menuItem action="#{Header.Monitoreo_action}" id="Monitoreos" styleClass="iceCmdLnk1" value="Monitoreo" rendered="#{Header.permisoMonitoreos}">
+                <ice:menuItem action="#{Header.Mapas_action}" icon="xmlhttp/css/rime/css-images/submenu.gif" id="Mapas" styleClass="iceCmdLnk1" value="Mapas" rendered="#{Header.permisoMapas}"/>
+                <ice:menuItem action="#{Header.Alarmas_action}" icon="xmlhttp/css/rime/css-images/submenu.gif" id="Alarmas" styleClass="iceCmdLnk1" value="Alarmas" rendered="#{Header.permisoAlarmas}"/>
+                <ice:menuItem action="#{Header.Monitoreo_action}" icon="xmlhttp/css/rime/css-images/submenu.gif" id="Monitoreo" styleClass="iceCmdLnk1" value="Monitoreo" rendered="#{Header.permisoMonitoreo}"/>
+            </ice:menuItem>
+            <ice:menuItem action="#{Header.Parametrizacion_action}" id="Parametrizacion" styleClass="iceCmdLnk1" value="Parametrizaci&#243;n" rendered="#{Header.permisoParametrizacion}">
+                <ice:menuItem action="#{Header.Usuarios_action}" icon="xmlhttp/css/rime/css-images/submenu.gif" id="Empleados" styleClass="iceCmdLnk1" value="Usuarios" rendered="#{Header.permisoEmpleados}"/>
+                <ice:menuItem action="#{Header.Cargos_action}" icon="xmlhttp/css/rime/css-images/submenu.gif" id="Cargos" styleClass="iceCmdLnk1" value="Cargos" rendered="#{Header.permisoCargos}"/>
+                
+                <ice:menuItem action="#{Header.BackupBD_action}" icon="xmlhttp/css/rime/css-images/submenu.gif" id="BackupBD" styleClass="iceCmdLnk1" value="Backup Base de Datos" rendered="#{Header.permisoBackupBD}"/>
+            </ice:menuItem>
+
+            <ice:menuItem action="#{Header.Reportes_action}" id="Reportes" styleClass="iceCmdLnk1" value="Reportes" rendered="#{Header.permisoReportes}">
+                <ice:menuItem action="#{Header.EstadoSanitario_action}" icon="xmlhttp/css/rime/css-images/submenu.gif" id="Reportes" styleClass="iceCmdLnk1" value="Reportes" rendered="#{Header.permisoReportes}"/>
+            </ice:menuItem>
+
+            <ice:menuItem action="#{Header.Perfil_action}" id="Perfil" styleClass="iceCmdLnk1" value="Perfil">
+                <ice:menuItem action="#{Header.ActualizarDatos_action}" icon="xmlhttp/css/rime/css-images/submenu.gif" id="ActualizarDatos"
+                    styleClass="iceCmdLnk1" value="Actualizar Datos"/>
+                <ice:menuItem action="#{Header.CambiarContrasenia_action}" icon="xmlhttp/css/rime/css-images/submenu.gif" id="CambiarContrasenia"
+                    styleClass="iceCmdLnk1" value="Cambiar Contrase&#241;a"/>
+            </ice:menuItem>
+        </ice:menuBar>
+    </f:subview>
+</div>

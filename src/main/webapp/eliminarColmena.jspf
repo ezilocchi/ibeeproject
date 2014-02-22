@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : eliminarColmena
+    Created on : 30-ago-2009, 18:10:46
+    Author     : carranza.matias
+-->
+
+<div style="-rave-layout: grid; " xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="eliminarColmena">
+        <table class="abm" width="100%">
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Denominaci&#243;n"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputDenomColmena" readonly="true" styleClass="abmInput" value="#{eliminarColmena.colmena.denominacion}" />
+                </td>
+                <td class="extension">
+                    <ice:commandButton id="ver_estados" value="Ver Historial de Estados" styleClass="buttonAdd" action="#{eliminarColmena.verHistoriales}" immediate="true"/>
+                </td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Fecha Alta"/>
+                </td>
+                <td>
+                    <ice:inputText id="fecha" value="#{eliminarColmena.colmena.fechaAlta}" readonly="true">
+                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Familia"/>
+                </td>
+                <td>
+                    <ice:selectOneMenu id="familia" value="#{eliminarColmena.colmena.familia.nroFamilia}" title="Familia" readonly="true" styleClass="abmInput" rendered="#{eliminarColmena.familiasSinAsignar}">
+                        <f:selectItems value="#{Colmenas.familiasSinAsignar}" />
+                    </ice:selectOneMenu>
+                    <ice:inputText rendered="#{not eliminarColmena.familiasSinAsignar}" value="No hay familias para asignar" readonly="true" styleClass="abmInput"/>
+                </td>
+                <td class="extension">
+                </td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Tipo Miel"/>
+                </td>
+                <td>
+                    <ice:selectOneMenu id="tipoMiel" value="#{eliminarColmena.colmena.tipoMiel.idTipoMiel}" title="Tipo Miel" styleClass="abmInput" readonly="true">
+                        <f:selectItems value="#{Colmenas.tiposMiel}" />
+                    </ice:selectOneMenu>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Caj&#243;n"/>
+                </td>
+                <td>
+                    <ice:selectOneMenu id="cajon" value="#{eliminarColmena.colmena.cajon.nroCajon}" title="Cajon" styleClass="abmInput" rendered="#{eliminarColmena.cajonesSinAsignar}" readonly="true">
+                        <f:selectItems value="#{Colmenas.cajonesSinAsignar}" />
+                    </ice:selectOneMenu>
+                    <ice:inputText rendered="#{not eliminarColmena.cajonesSinAsignar}" value="No hay cajones para asignar" readonly="true" styleClass="abmInput"/>
+                </td>
+                <td class="extension">
+                </td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                    </span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Estado" />
+                </td>
+                <td>
+                    <ice:selectOneMenu id="estado" value="#{eliminarColmena.colmena.estado.numero}" title="Estado" readonly="true" styleClass="abmInput">
+                        <f:selectItems value="#{Colmenas.estados}" />
+                    </ice:selectOneMenu>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:inputText id ="colmenaDefault" rendered="false"/>
+                        <ice:message for="colmenaDefault" id="mcolmenaDefault" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="aceptar">
+                    <ice:commandButton id="aceptar" value="Aceptar" action="#{eliminarColmena.actionAceptar}" image="/resources/icons/buttons/eliminar.png" />
+                </td>
+                <td>
+                    <ice:commandButton immediate="true" id="cancelar" value="Cancelar" action="#{eliminarColmena.actionCancelar}" image="/resources/icons/buttons/Cancelar.png" />
+                </td>
+            </tr>
+        </table>
+    </f:subview>
+</div>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : mostrarZona
+    Created on : 30/01/2010, 15:38:51
+    Author     : CyberShark
+-->
+
+<div style="-rave-layout: grid" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:m="http://code.google.com/p/gmaps4jsf/" >
+    <f:subview id="mostrarZona">
+        <html>
+            <head>
+                <f:verbatim>
+                    <![CDATA[
+                    <script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAbSzQ9VpZQwenDnv2GOzjYBS0mfbAkUOhKCwVmgIpLk6yLG9CCBReWtkTVanbYdV5orUhEeUGOvaLsA">
+                    </script>
+                    ]]>
+                </f:verbatim>
+            </head>
+            <body>
+                <ice:panelGrid width="100%">
+                <m:map id="mapa" type="G_NORMAL_MAP" renderOnWindowLoad="false"
+                jsVariable="map1" zoom="8" latitude="-31" longitude="-64" binding="#{mostrarZona.mapa}" rendered="true" >
+                    <m:mapControl id="largectrl" name="GLargeMapControl"/>
+                    <m:marker latitude="#{mostrarZona.latitud}" longitude="#{mostrarZona.longitud}" rendered="false" jsVariable="marker1" draggable="true" submitOnValueChange="true" binding="#{mostrarZona.mark}">
+                        <m:eventListener eventName="dragend" jsFunction="marker1DragHandler"/>
+                    </m:marker>
+                </m:map>
+                <f:verbatim>
+                    <script>
+                        function marker1DragHandler(latlng) {}
+                    </script>
+                </f:verbatim>
+                <ice:outputText value="First place (lat, lng): (#{mostrarZona.latitud}, #{mostrarZona.longitud})"/>
+                </ice:panelGrid>
+            </body>
+        </html>
+    </f:subview>
+</div>

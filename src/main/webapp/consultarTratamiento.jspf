@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : consultarTratamiento
+    Created on : 26-ago-2009, 12:20:03
+    Author     : carranza.matias
+-->
+
+<div style="-rave-layout: grid; " xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="consultarTratamiento">
+        <table class="abm" width="100%">
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Denominaci&#243;n"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputDenomTratamiento" required="true" styleClass="abmInput" readonly="true"
+                    value="#{consultarTratamiento.tratamiento.denominacion}" size="10" maxlength="100" partialSubmit="true"/>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Descripci&#243;n"/>
+                </td>
+                <td>
+                    <ice:inputTextarea id="inputDescTratamiento" readonly="true" styleClass="abmInput" required="true"
+                    value="#{consultarTratamiento.tratamiento.descripcion}"/>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Costeo"/>
+                </td>
+                <td>
+                    <ice:inputText styleClass="abmInput" readonly="true" id="inputCosteo" value="#{consultarTratamiento.tratamiento.costeo}"/>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                </td>
+                <td>
+                    <ice:commandButton id="cancelar" value="Volver" image="/resources/icons/buttons/volver.png" action="#{consultarTratamiento.actionVolver}" type="submit"/>
+                </td>
+            </tr>
+        </table>
+    </f:subview>
+</div>

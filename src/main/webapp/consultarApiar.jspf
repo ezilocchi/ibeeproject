@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : consultarApiar
+    Created on : 27-jun-2009, 17:53:57
+    Author     : farias.facundo
+-->
+<div style="-rave-layout: grid" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="consultarApiar">
+        <table class="abm" width="100%">
+            <tr>
+                <td class="title">
+                    <ice:outputText id="labelApiar1" value="Nro de Apiar"/>
+                </td>
+                <td>
+                    <ice:inputText disabled="true" id="idApiar21" maxlength="100" partialSubmit="true" required="false" size="10" styleClass="abmInput" value="#{consultarApiar.apiar.idApiar}"/>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="idApiar21" id="mDenom" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Denominaci&#243;n"/>
+                </td>
+                <td>
+                    <ice:inputText id="denominacion21" partialSubmit="true" readonly="true" required="true" styleClass="abmInput" value="#{consultarApiar.apiar.denominacion}"/>
+                </td>
+                <td class="extension">
+                    <ice:commandButton id="ver_estados" value="Ver Historial de Estados" styleClass="buttonAdd" action="#{consultarApiar.verHistoriales}" immediate="true"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Zona"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputZona2" readonly="true" styleClass="abmInput" title="Zonas" value="#{consultarApiar.apiar.zona.zona}"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Fecha Alta"/>
+                </td>
+                <td>
+                    <ice:inputText id="fechaAlta21" readonly="true" value="#{consultarApiar.apiar.fechaAlta}">
+                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Ubicaci&#243;n"/>
+                    <td>
+                        <ice:panelGrid columns="3" styleClass="abm">
+                            <td>
+                                <ice:outputText value="Latitud"/>
+                                <ice:inputText id="latitud21" readonly="true" required="true" styleClass="abmInput" value="#{consultarApiar.apiar.ubicacion.latitud}"/>
+                            </td>
+                            <td>
+                                <ice:outputText value="Longitud"/>
+                                <ice:inputText id="longitud21" readonly="true" required="true" styleClass="abmInput" value="#{consultarApiar.apiar.ubicacion.longitud}"/>
+                            </td>
+                        </ice:panelGrid>
+                    </td>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Colmenas"/>
+                </td>
+                <td>
+                    <ice:panelGrid columns="3" styleClass="abm">
+                        <ice:dataTable binding="#{consultarApiar.dataTable2}" columnClasses="rowTable" headerClass="hdrTable" id="dataTable221"
+                                       rowClasses="rowTable" title="Colmenas Asignadas" value="#{consultarApiar.apiar.colmenasAsignadas}" var="currentRow" width="100%">
+                            <ice:column id="column121">
+                                <ice:outputText id="outputText11" value="#{currentRow['idColmena']}"/>
+                                <f:facet name="header">
+                                    <ice:outputText id="outputText211" value="ID de Colmena"/>
+                                </f:facet>
+                            </ice:column>
+                            <ice:column id="column221">
+                                <ice:outputText id="outputText311" value="#{currentRow['fechaAlta']}"/>
+                                <f:facet name="header">
+                                    <ice:outputText id="outputText411" value="Fecha de Alta"/>
+                                </f:facet>
+                            </ice:column>
+                            <ice:column id="column321">
+                                <ice:outputText id="outputText511" value="#{currentRow['denominacion']}"/>
+                                <f:facet name="header">
+                                    <ice:outputText id="outputText6121" value="Denominaci&#243;n"/>
+                                </f:facet>
+                            </ice:column>
+                        </ice:dataTable>
+                    </ice:panelGrid>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Layout"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputLay21" partialSubmit="true" readonly="true" styleClass="abmInput" title="layouts" value="#{consultarApiar.apiar.layout.denominacion}"/>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Layout del Apiar"/>
+                </td>
+                <td>
+                    <ice:panelGrid columns="1" styleClass="abm">
+                        <td>
+                            <ice:outputLabel id="colmenas_max1" value="colmenas max."/>
+                            <ice:inputText disabled="true" id="cant_colmenas_max1" partialSubmit="true" value="#{consultarApiar.cantidad_max}"/>
+                        </td>
+                        <td>
+                            <ice:outputLabel id="colmenas1" value="colmenas asignadas"/>
+                            <ice:inputText disabled="true" id="cant_colmenas_asignada1" readonly="true" value="#{consultarApiar.cantidad_asignada}"/>
+                        </td>
+                        <td id="layoutTable">
+                            <ice:dataTable binding="#{consultarApiar.dataTable3}" columnClasses="rowTable" headerClass="hdrTable" id="dataTable31"
+                                           rowClasses="rowTable" title="Colmenas Sin Asignar" value="#{consultarApiar.apiar.colmenasAsignadas}" var="currentRow" width="100%">
+                                <ice:column id="column131">
+                                    <ice:outputText id="outputText111" value="#{currentRow['posicion'].posHorizontal}"/>
+                                    <f:facet name="header">
+                                        <ice:outputText id="outputText211" value="Posicion X"/>
+                                    </f:facet>
+                                </ice:column>
+                                <ice:column id="column231">
+                                    <ice:outputText id="outputText31" value="#{currentRow['posicion'].posVertical}"/>
+                                    <f:facet name="header">
+                                        <ice:outputText id="outputText411" value="Posicion Y"/>
+                                    </f:facet>
+                                </ice:column>
+                                <ice:column id="column33">
+                                    <ice:outputText id="outputText511" value="#{currentRow['denominacion']}"/>
+                                    <f:facet name="header">
+                                        <ice:outputText id="outputText611" value="Colmena"/>
+                                    </f:facet>
+                                </ice:column>
+                            </ice:dataTable>
+                        </td>
+                    </ice:panelGrid>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="aceptar"/>
+                <td>
+                    <ice:commandButton action="#{consultarApiar.actionCancelar}" id="cancelar1" image="/resources/icons/buttons/volver.png" immediate="true" type="submit" value="Volver"/>
+                </td>
+            </tr>
+        </table>
+        <ice:panelConfirmation acceptLabel="OK" cancelLabel="Cancel" draggable="false" id="confirmRecord1"
+                               message="Esta seguro que desea registrar el apiar. Are you sure?" styleClass="corePopup" title="Confirmar Operación"/>
+    </f:subview>
+</div>

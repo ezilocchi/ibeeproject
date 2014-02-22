@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : consultarSintomas
+    Created on : 22-ago-2009, 17:43:04
+    Author     : carranza.matias
+-->
+<div style="-rave-layout: grid;" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="consultarSintomas">
+        <div  class="headerTable">
+            <ice:commandButton action="#{consultarSintomas.add_action}" id="btn_add" styleClass="buttonAdd floatRight" value="Agregar S&#237;ntoma"/>
+
+            <!-- Paginator -->
+                <ice:dataPaginator id="dataScrollSint"
+                                   for="dataTableSint"
+                                   paginator="true"
+                                   fastStep="2"
+                               paginatorMaxPages="5"
+                               styleClass="floatLeft">
+                <f:facet name="first">
+                    <ice:graphicImage
+                        url="./xmlhttp/css/rime/css-images/arrow-first.gif"
+                        style="border:none;"
+                        title="First Page"/>
+                </f:facet>
+                <f:facet name="last">
+                    <ice:graphicImage
+                        url="./xmlhttp/css/rime/css-images/arrow-last.gif"
+                        style="border:none;"
+                        title="Last Page"/>
+                </f:facet>
+                <f:facet name="previous">
+                    <ice:graphicImage
+                        url="./xmlhttp/css/rime/css-images/arrow-previous.gif"
+                        style="border:none;"
+                        title="Previous Page"/>
+                </f:facet>
+                <f:facet name="next">
+                    <ice:graphicImage
+                        url="./xmlhttp/css/rime/css-images/arrow-next.gif"
+                        style="border:none;"
+                        title="Next Page"/>
+                </f:facet>
+                <f:facet name="fastforward">
+                    <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-ff.gif"
+                                      style="border:none;"
+                                      title="Fast Forward"/>
+                </f:facet>
+                <f:facet name="fastrewind">
+                    <ice:graphicImage url="./xmlhttp/css/rime/css-images/arrow-fr.gif"
+                                      style="border:none;"
+                                      title="Fast Backwards"/>
+                </f:facet>
+            </ice:dataPaginator>
+        </div>
+
+        <!-- Data Table -->
+
+        <ice:dataTable columnClasses="rowTable" headerClass="hdrTable" id="dataTableSint" rowClasses="rowTable"
+        title="Sintomas" value="#{consultarSintomas.sintomas}" var="currentRow" width="100%" rows="4">
+            <ice:column id="column1">
+                <ice:outputText id="outputText1" value="#{currentRow['denominacion']}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText2" value="Denominaci&#243;n"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column2">
+                <ice:outputText id="outputText3" value="#{currentRow['descripcion']}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText4" value="Descripci&#243;n"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column3">
+                <ice:outputText id="outputText5" value="#{currentRow['observaciones']}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText6" value="Observaciones"/>
+                </f:facet>
+            </ice:column>
+            <ice:column id="column4" styleClass="columnaAciones">
+                
+                <ice:commandButton action="#{consultarSintomas.modif_action}" id="btn_modif" styleClass="buttonEdit" title="editar" value="Modificar"/>
+                <ice:commandButton action="#{consultarSintomas.delete_action}" id="btn_elim" styleClass="buttonDelete" title="eliminar" value="Eliminar"/>
+                <ice:commandButton action="#{consultarSintomas.query_action}" id="btn_ver" styleClass="buttonInfo" title="consultar" value="Consultar"/>
+                <f:param value="#{currentRow}" binding="#{consultarSintomas.parametro}"/>
+                <f:facet name="header">
+                    <ice:outputText id="outputText14" value="Acciones"/>
+                </f:facet>
+            </ice:column>
+        </ice:dataTable>
+    </f:subview>
+</div>

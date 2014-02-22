@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : ModalPopupTareas
+    Created on : 11-oct-2009, 19:54:07
+    Author     : farias.facundo
+-->
+
+<div xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:jsp="http://java.sun.com/JSP/Page" >
+    <f:subview id="ModalPopupTareas">
+        <html id="outputHtml1">
+            <head id="outputHead1">
+            </head>
+            <body id="outputBody1" style="-rave-layout: grid">
+                <ice:form id="formTareas">
+                    <ice:panelPopup binding="#{ModalPopupTareas.panelPopup1}" draggable="true" id="panelPopup1" rendered="#{ModalPopupTareas.panelPopup1Bean.showDraggablePanel}"
+                                    styleClass="corePopup" visible="#{ModalPopupTareas.panelPopup1Bean.showModalPanel}" modal="true">
+                        <f:facet name="header">
+                            <ice:panelGroup styleClass="popupHeaderWrapper">
+                                <ice:outputText id="outputText1" value="#{ModalPopupTareas.title}" styleClass="popupHeaderText"/>
+                                <ice:commandButton id="modalPnlCloseBtn" type="button"
+                                                   image="resources/rime/css-images/cal_off.gif" styleClass="popupHeaderImage" immediate="true"
+                                                   title="Close Popup" alt="Close" action="#{ModalPopupTareas.cerrarPopup}"/>
+                            </ice:panelGroup>
+                        </f:facet>
+                        <f:facet name="body" >
+                            <ice:panelGrid id="panelGrid2" width="100%">
+                                <table class="abm" width="100%">
+                                    <tr>
+                                        <td class="title">
+                                            <ice:outputText value="Descripci&#243;n"/>
+                                        </td>
+                                        <td>
+                                            <ice:inputText id="inputDescrip" required="true" styleClass="abmInput" readonly="#{ModalPopupTareas.readOnly || ModalPopupTareas.resolve}"
+                                                           value="#{ModalPopupTareas.tarea.descripcion}">
+                                            </ice:inputText>
+                                        </td>
+                                        <td class="extension"></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td colspan="2">
+                                            <span class="validator">
+                                                <ice:message for="inputDescrip" id="mDenom" style="color:red; line-height:200%; background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px; padding-left:15px;"/>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">
+                                            <ice:outputText value="Tipo de Tarea (*)"/>
+                                        </td>
+                                        <td>
+                                            <ice:selectOneMenu value="#{ModalPopupTareas.tarea.tipoTarea.codigo}" id="tpoTar" styleClass="abmInput" readonly="#{ModalPopupTareas.readOnly || ModalPopupTareas.resolve}"
+                                                               required="true" rendered="#{ModalPopupTareas.vieneDeActividad}">
+                                                <f:selectItems value="#{Actividades.tiposDeTarea}"/>
+                                            </ice:selectOneMenu>
+                                            <ice:inputText value="#{ModalPopupTareas.tarea.tipoTarea.descripcion}" styleClass="abmInput"
+                                            rendered="#{ModalPopupTareas.vieneDeTareas}" readonly="#{ModalPopupTareas.readOnly || ModalPopupTareas.resolve}"/>
+                                        </td>
+                                        <td class="extension"></td>
+                                    </tr>
+                                    <tr>
+                                        <td> </td>
+                                        <td colspan="2">
+                                            <span class="validator">
+                                                <ice:message for="tpoTar" style="color:red; line-height:200%; background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px; padding-left:15px;"/>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">
+                                            <ice:outputText value="Asignar a (*)"/>
+                                        </td>
+                                        <td>
+                                            <ice:selectOneMenu value="#{ModalPopupTareas.tarea.empleado.legajo}" id="selEmp" styleClass="abmInput" readonly="#{ModalPopupTareas.readOnly || ModalPopupTareas.resolve}"
+                                                               required="true" rendered="#{ModalPopupTareas.vieneDeActividad}">
+                                                <f:selectItems value="#{Actividades.empleados}"/>
+                                            </ice:selectOneMenu>
+                                            <ice:inputText value="#{ModalPopupTareas.tarea.empleado.nombre} #{ModalPopupTareas.tarea.empleado.apellido}" styleClass="abmInput"
+                                            rendered="#{ModalPopupTareas.vieneDeTareas}" readonly="#{ModalPopupTareas.readOnly || ModalPopupTareas.resolve}"/>
+                                        </td>
+                                        <td class="extension"></td>
+                                    </tr>
+                                    <tr>
+                                        <td> </td>
+                                        <td colspan="2">
+                                            <span class="validator">
+                                                <ice:message for="selEmp" style="color:red; line-height:200%; background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px; padding-left:15px;"/>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">
+                                            <ice:outputText value="Fecha Prevista de Cierre(*)"/>
+                                        </td>
+                                        <td>
+                                            <ice:selectInputDate id="fecha" value="#{ModalPopupTareas.tarea.fechaPrevista}" required="true" highlightUnit="DAY_OF_YEAR" highlightValue="1"
+                                                                 renderAsPopup="true" readonly="#{ModalPopupTareas.readOnly || ModalPopupTareas.resolve}">
+                                                <f:convertDateTime pattern="dd-MMM-yyyy" />
+                                            </ice:selectInputDate>
+                                        </td>
+                                        <td class="extension"></td>
+                                    </tr>
+                                    <tr>
+                                        <td> </td>
+                                        <td colspan="2">
+                                            <span class="validator">
+                                                <ice:message for="fecha" id="mFecha" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">
+                                            <ice:outputText value="Observaciones"/>
+                                        </td>
+                                        <td>
+                                            <ice:inputTextarea id="inputObs" styleClass="abmInput" readonly="#{ModalPopupTareas.readOnly || ModalPopupTareas.resolve}"
+                                                               value="#{ModalPopupTareas.tarea.observaciones}">
+                                            </ice:inputTextarea>
+                                        </td>
+                                        <td class="extension"></td>
+                                    </tr>
+
+                                    <!-- Paneles variables en función de cada tarea -->
+
+                                    <tr>
+                                        <!-- usaAlarma : TRUE -->
+                                        <ice:panelGroup rendered="#{ModalPopupTareas.tarea.tipoTarea.usaAlarma}" style="display:none;" visible="false">
+                                            <td class="title">
+                                                <ice:outputLabel value="Alarma Relacionada"/>
+                                            </td>
+                                            <td>
+                                                <ice:selectOneMenu value="#{ModalPopupTareas.tarea.alarma.numero}" styleClass="abmInput" rendered="#{ModalPopupTareas.vieneDeActividad}">
+                                                    <f:selectItems value="#{Actividades.alarmas}" />
+                                                </ice:selectOneMenu>
+                                                <ice:selectOneMenu value="#{ModalPopupTareas.tarea.alarma.numero}" styleClass="abmInput" rendered="#{ModalPopupTareas.vieneDeTareas}">
+                                                    <f:selectItems value="#{Tareas.alarmas}" />
+                                                </ice:selectOneMenu>
+                                            </td>
+                                            <td class="extension">
+                                                <ice:commandLink value="Consultar Alarmas" action="#{ModalPopupTareas.linkAlarmas}" visible="#{not ModalPopupTareas.readOnly}"/>
+                                            </td>
+                                        </ice:panelGroup>
+                                    </tr>
+
+                                    <tr>
+                                        <!-- usaLayout : TRUE -->
+                                        <ice:panelGroup rendered="#{ModalPopupTareas.tarea.tipoTarea.usaLayout}"  style="display:none;" visible="false">
+                                            <td class="title">
+                                                <ice:outputLabel value="Layout Relacionado"/>
+                                            </td>
+                                            <td>
+                                                <ice:selectOneMenu value="#{ModalPopupTareas.tarea.layout.idLayout}" styleClass="abmInput" rendered="#{ModalPopupTareas.vieneDeActividad}">
+                                                    <f:selectItems value="#{Actividades.layouts}"/>
+                                                </ice:selectOneMenu>
+                                                <ice:selectOneMenu value="#{ModalPopupTareas.tarea.layout.idLayout}" styleClass="abmInput" rendered="#{ModalPopupTareas.vieneDeTareas}">
+                                                    <f:selectItems value="#{Tareas.layouts}"/>
+                                                </ice:selectOneMenu>
+                                            </td>
+                                            <td class="extension">
+                                                <ice:commandLink value="Consultar Layouts" action="#{ModalPopupTareas.linkLayouts}" visible="#{not ModalPopupTareas.readOnly}"/>
+                                            </td>
+                                        </ice:panelGroup>
+                                    </tr>
+
+                                    <tr>
+                                        <!-- usaZona : TRUE -->
+                                        <ice:panelGroup rendered="#{ModalPopupTareas.tarea.tipoTarea.usaZona}"  style="display:none;" visible="false">
+                                            <td class="title">
+                                                <ice:outputLabel value="Zona Relacionada"/>
+                                            </td>
+                                            <td>
+                                                <ice:selectOneMenu value="#{ModalPopupTareas.tarea.zona.idZona}" styleClass="abmInput" rendered="#{ModalPopupTareas.vieneDeActividad}">
+                                                    <f:selectItems value="#{Actividades.zonas}"/>
+                                                </ice:selectOneMenu>
+                                                <ice:selectOneMenu value="#{ModalPopupTareas.tarea.zona.idZona}" styleClass="abmInput" rendered="#{ModalPopupTareas.vieneDeTareas}">
+                                                    <f:selectItems value="#{Tareas.zonas}"/>
+                                                </ice:selectOneMenu>
+                                            </td>
+                                            <td class="extension">
+                                                <ice:commandLink value="Consultar Zonas" action="#{ModalPopupTareas.linkZonas}" visible="#{not ModalPopupTareas.readOnly}"/>
+                                            </td>
+                                        </ice:panelGroup>
+                                    </tr>
+
+                                    <tr>
+                                        <!-- usaApiar : TRUE -->
+                                        <ice:panelGroup rendered="#{ModalPopupTareas.tarea.tipoTarea.usaApiar}"  style="display:none;" visible="false">
+                                            <td class="title">
+                                                <ice:outputLabel value="Apiar Relacionado"/>
+                                            </td>
+                                            <td>
+                                                <ice:selectOneMenu value="#{ModalPopupTareas.tarea.apiar.idApiar}" styleClass="abmInput" rendered="#{ModalPopupTareas.vieneDeActividad}">
+                                                    <f:selectItems value="#{Actividades.apiares}"/>
+                                                </ice:selectOneMenu>
+                                                <ice:selectOneMenu value="#{ModalPopupTareas.tarea.apiar.idApiar}" styleClass="abmInput" rendered="#{ModalPopupTareas.vieneDeTareas}">
+                                                    <f:selectItems value="#{Tareas.apiares}"/>
+                                                </ice:selectOneMenu>
+                                            </td>
+                                            <td class="extension">
+                                                <ice:commandLink value="Consultar Apiares" action="#{ModalPopupTareas.linkApiares}" visible="#{not ModalPopupTareas.readOnly}"/>
+                                            </td>
+                                        </ice:panelGroup>
+                                    </tr>
+
+                                    <tr>
+                                        <!-- usaColmena : TRUE -->
+                                        <ice:panelGroup rendered="#{ModalPopupTareas.tarea.tipoTarea.usaColmena}"  style="display:none;" visible="false">
+                                            <td class="title">
+                                                <ice:outputLabel value="Colmena Relacionada"/>
+                                            </td>
+                                            <td>
+                                                <ice:selectOneMenu value="#{ModalPopupTareas.tarea.colmena.idColmena}" styleClass="abmInput" rendered="#{ModalPopupTareas.vieneDeActividad}">
+                                                    <f:selectItems value="#{Actividades.colmenas}"/>
+                                                </ice:selectOneMenu>
+                                                <ice:selectOneMenu value="#{ModalPopupTareas.tarea.colmena.idColmena}" styleClass="abmInput" rendered="#{ModalPopupTareas.vieneDeTareas}">
+                                                    <f:selectItems value="#{Tareas.colmenas}"/>
+                                                </ice:selectOneMenu>
+                                            </td>
+                                            <td class="extension">
+                                                <ice:commandLink value="Consultar Colmenas" action="#{ModalPopupTareas.linkColmenas}" visible="#{not ModalPopupTareas.readOnly}"/>
+                                            </td>
+                                        </ice:panelGroup>
+                                    </tr>
+
+                                    <tr>
+                                        <!-- usaFamilia : TRUE -->
+                                        <ice:panelGroup rendered="#{ModalPopupTareas.tarea.tipoTarea.usaFamilia}"  style="display:none;" visible="false">
+                                            <td class="title">
+                                                <ice:outputLabel value="Familia Relacionada"/>
+                                            </td>
+                                            <td>
+                                                <ice:selectOneMenu value="#{ModalPopupTareas.tarea.familia.nroFamilia}" styleClass="abmInput" rendered="#{ModalPopupTareas.vieneDeActividad}">
+                                                    <f:selectItems value="#{Actividades.familias}"/>
+                                                </ice:selectOneMenu>
+                                                <ice:selectOneMenu value="#{ModalPopupTareas.tarea.familia.nroFamilia}" styleClass="abmInput" rendered="#{ModalPopupTareas.vieneDeTareas}">
+                                                    <f:selectItems value="#{Tareas.familias}"/>
+                                                </ice:selectOneMenu>
+                                            </td>
+                                            <td class="extension">
+                                                <ice:commandLink value="Consultar Familias" action="#{ModalPopupTareas.linkFamilias}" visible="#{not ModalPopupTareas.readOnly}"/>
+                                            </td>
+                                        </ice:panelGroup>
+                                    </tr>
+
+                                    <tr>
+                                        <!-- usaCajon : TRUE -->
+                                        <ice:panelGroup rendered="#{ModalPopupTareas.tarea.tipoTarea.usaCajon}"  style="display:none;" visible="false">
+                                            <td class="title">
+                                                <ice:outputLabel value="Cajon Relacionado"/>
+                                            </td>
+                                            <td>
+                                                <ice:selectOneMenu value="#{ModalPopupTareas.tarea.cajon.nroCajon}" styleClass="abmInput" rendered="#{ModalPopupTareas.vieneDeActividad}">
+                                                    <f:selectItems value="#{Actividades.cajones}"/>
+                                                </ice:selectOneMenu>
+                                                <ice:selectOneMenu value="#{ModalPopupTareas.tarea.cajon.nroCajon}" styleClass="abmInput" rendered="#{ModalPopupTareas.vieneDeTareas}">
+                                                    <f:selectItems value="#{Tareas.cajones}"/>
+                                                </ice:selectOneMenu>
+                                            </td>
+                                            <td class="extension">
+                                                <ice:commandLink value="Consultar Cajones" action="#{ModalPopupTareas.linkCajones}" visible="#{not ModalPopupTareas.readOnly}"/>
+                                            </td>
+                                        </ice:panelGroup>
+                                    </tr>
+
+                                    <tr>
+                                        <!-- usaTratamiento : TRUE -->
+                                        <ice:panelGroup rendered="#{ModalPopupTareas.tarea.tipoTarea.usaTratamiento}" style="display:none;" visible="false">
+                                            <td class="title">
+                                                <ice:outputLabel value="Tratamiento Relacionado"/>
+                                            </td>
+                                            <td>
+                                                <ice:selectOneMenu value="#{ModalPopupTareas.tarea.tratamiento.numero}" styleClass="abmInput" rendered="#{ModalPopupTareas.vieneDeActividad}">
+                                                    <f:selectItems value="#{Actividades.tratamientos}"/>
+                                                </ice:selectOneMenu>
+                                                <ice:selectOneMenu value="#{ModalPopupTareas.tarea.tratamiento.numero}" styleClass="abmInput" rendered="#{ModalPopupTareas.vieneDeTareas}">
+                                                    <f:selectItems value="#{Tareas.tratamientos}"/>
+                                                </ice:selectOneMenu>
+                                            </td>
+                                            <td class="extension">
+                                                <ice:commandLink value="Consultar Tratamientos" action="#{ModalPopupTareas.linkTratamientos}" visible="#{not ModalPopupTareas.readOnly}"/>
+                                            </td>
+                                        </ice:panelGroup>
+                                    </tr>
+
+                                    <tr>
+                                        <!-- usaEnfermedad : TRUE -->
+                                        <ice:panelGroup rendered="#{ModalPopupTareas.tarea.tipoTarea.usaEnfermedad}" style="display:none;" visible="false">
+                                            <td class="title">
+                                                <ice:outputLabel value="Enfermedad Relacionada"/>
+                                            </td>
+                                            <td>
+                                                <ice:selectOneMenu value="#{ModalPopupTareas.tarea.enfermedad.numero}" styleClass="abmInput" rendered="#{ModalPopupTareas.vieneDeActividad}">
+                                                    <f:selectItems value="#{Actividades.enfermedades}"/>
+                                                </ice:selectOneMenu>
+                                                <ice:selectOneMenu value="#{ModalPopupTareas.tarea.enfermedad.numero}" styleClass="abmInput" rendered="#{ModalPopupTareas.vieneDeTareas}">
+                                                    <f:selectItems value="#{Tareas.enfermedades}"/>
+                                                </ice:selectOneMenu>
+                                            </td>
+                                            <td class="extension">
+                                                <ice:commandLink value="Consultar Enfermedades" action="#{ModalPopupTareas.linkEnfermedades}" visible="#{not ModalPopupTareas.readOnly}"/>
+                                            </td>
+                                        </ice:panelGroup>
+                                    </tr>
+
+                                    <tr>
+                                        <!-- usaSintoma : TRUE -->
+                                        <ice:panelGroup rendered="#{ModalPopupTareas.tarea.tipoTarea.usaSintoma}" style="display:none;" visible="false">
+                                            <td class="title">
+                                                <ice:outputLabel value="Sintoma Relacionado"/>
+                                            </td>
+                                            <td>
+                                                <ice:selectOneMenu value="#{ModalPopupTareas.tarea.sintoma.numero}" styleClass="abmInput" rendered="#{ModalPopupTareas.vieneDeActividad}">
+                                                    <f:selectItems value="#{Actividades.sintomas}"/>
+                                                </ice:selectOneMenu>
+                                                <ice:selectOneMenu value="#{ModalPopupTareas.tarea.sintoma.numero}" styleClass="abmInput" rendered="#{ModalPopupTareas.vieneDeTareas}">
+                                                    <f:selectItems value="#{Tareas.sintomas}"/>
+                                                </ice:selectOneMenu>
+                                            </td>
+                                            <td class="extension">
+                                                <ice:commandLink value="Consultar Sintomas" action="#{ModalPopupTareas.linkSintomas}" visible="#{not ModalPopupTareas.readOnly}"/>
+                                            </td>
+                                        </ice:panelGroup>
+                                    </tr>
+
+                                    <tr>
+                                        <!-- Estado de la Tarea -->
+                                        <ice:panelGroup rendered="#{ModalPopupTareas.resolve || ModalPopupTareas.readOnly}" style="display:none;" visible="false">
+                                            <td class="title">
+                                                <ice:outputLabel value="Estado de la Tarea"/>
+                                            </td>
+                                            <td>
+                                                <ice:selectOneMenu value="#{ModalPopupTareas.tarea.estado.numero}" styleClass="abmInput" partialSubmit="true" rendered="#{ModalPopupTareas.vieneDeActividad}">
+                                                    <f:selectItems value="#{Actividades.estados}"/>
+                                                </ice:selectOneMenu>
+                                                <ice:selectOneMenu value="#{ModalPopupTareas.tarea.estado.numero}" styleClass="abmInput" partialSubmit="true" rendered="#{ModalPopupTareas.vieneDeTareas}">
+                                                    <f:selectItems value="#{Tareas.estados}"/>
+                                                </ice:selectOneMenu>
+                                            </td>
+                                            <td class="extension">
+                                            </td>
+                                        </ice:panelGroup>
+                                    </tr>
+
+                                    <tr>
+                                        <!-- Descripcion de la Realización -->
+                                        <ice:panelGroup rendered="#{ModalPopupTareas.resolve || ModalPopupTareas.readOnly}" style="display:none;" visible="false">
+                                            <td class="title">
+                                                <ice:outputLabel value="Descripci&#243;n de la Realizaci&#243;n"/>
+                                            </td>
+                                            <td>
+                                                <ice:inputTextarea value="#{ModalPopupTareas.tarea.descripcionRealizacion}" styleClass="abmInput"
+                                                readonly="#{ModalPopupTareas.readOnly}"/>
+                                            </td>
+                                            <td class="extension">
+                                            </td>
+                                        </ice:panelGroup>
+                                    </tr>
+
+                                    <tr>
+                                        <!-- Cantidad de Miel -->
+                                        <ice:panelGroup rendered="#{ModalPopupTareas.resolve || ModalPopupTareas.readOnly}" style="display:none;" visible="false">
+                                            <td class="title">
+                                                <ice:outputLabel value="Cantidad de Miel extraida (en Kg)"/>
+                                            </td>
+                                            <td>
+                                                <ice:inputText value="#{ModalPopupTareas.tarea.cantidadMiel}" styleClass="abmInput"
+                                                readonly="#{ModalPopupTareas.readOnly}"/>
+                                            </td>
+                                            <td class="extension">
+                                            </td>
+                                        </ice:panelGroup>
+                                    </tr>
+
+                                    <tr>
+                                        <!-- Cantidad de Horas -->
+                                        <ice:panelGroup rendered="#{ModalPopupTareas.resolve || ModalPopupTareas.readOnly}" style="display:none;" visible="false">
+                                            <td class="title">
+                                                <ice:outputLabel value="Cantidad de Horas Necesarias"/>
+                                            </td>
+                                            <td>
+                                                <ice:inputText value="#{ModalPopupTareas.tarea.cantidadHoras}" styleClass="abmInput"
+                                                readonly="#{ModalPopupTareas.readOnly}"/>
+                                            </td>
+                                            <td class="extension">
+                                            </td>
+                                        </ice:panelGroup>
+                                    </tr>
+
+                                    <tr>
+                                        <td> </td>
+                                        <td colspan="2">
+                                            <span class="validator">
+                                                <ice:inputText id ="tareasDefault" rendered="false"/>
+                                                <ice:message for="tareasDefault" id="mtareasDefault" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td class="aceptar">
+                                            <ice:commandButton id="cancel" value="Cancelar" styleClass="floatRight buttonCancel" immediate="true"
+                                                               action="#{ModalPopupTareas.cancela}" rendered="#{not ModalPopupTareas.readOnly}"/>
+                                        </td>
+                                        <td>
+                                            <ice:commandButton id="accept" value="Aceptar" styleClass="floatRight buttonAccept" partialSubmit="true"
+                                                               action="#{ModalPopupTareas.acepta}" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </ice:panelGrid>
+                        </f:facet>
+                    </ice:panelPopup>
+                </ice:form>
+            </body>
+        </html>
+    </f:subview>
+</div>

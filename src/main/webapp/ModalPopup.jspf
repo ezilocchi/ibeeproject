@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : ModalPopup
+    Created on : 19-jul-2009, 19:44:05
+    Author     : farias.facundo
+-->
+
+<div xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:jsp="http://java.sun.com/JSP/Page">
+    <f:subview id="ModalPopup">
+        <html id="outputHtml1">
+            <head id="outputHead1">
+                <!-- Me llevé todos los estilos que usamos al css correspondiente -->
+                <!--ice:outputStyle href="./resources/stylesheet.css" id="outputStyle1"-->
+            </head>
+            <body id="outputBody1" style="-rave-layout: grid">
+                <ice:form id="form1">
+                    <ice:panelPopup binding="#{ModalPopup.panelPopup1}" draggable="true" id="panelPopup1" rendered="#{ModalPopup.panelPopup1Bean.showDraggablePanel}"
+                                    styleClass="corePopup" visible="#{ModalPopup.panelPopup1Bean.showModalPanel}" modal="true">
+                        <f:facet name="header">
+                            <ice:panelGroup styleClass="popupHeaderWrapper">
+                                <ice:outputText id="outputText1" value="#{ModalPopup.title}" styleClass="popupHeaderText"/>
+                                <ice:commandButton id="modalPnlCloseBtn" type="button"
+                                                   image="resources/rime/css-images/cal_off.gif" styleClass="popupHeaderImage"
+                                                   title="Close Popup" alt="Close" action="#{ModalPopup.cerrarPopup}"/>
+                            </ice:panelGroup>
+                        </f:facet>
+                        <f:facet name="body">
+                            <ice:panelGrid id="panelGrid2" style="display:block;width:180px;height:80px;" styleClass="popupTextBody">
+                            </ice:panelGrid>
+                        </f:facet>
+                    </ice:panelPopup>
+                </ice:form>
+            </body>
+        </html>
+    </f:subview>
+</div>

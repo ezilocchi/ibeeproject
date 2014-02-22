@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : agregarEmpleado
+    Created on : 13-feb-2010, 13:54:00
+    Author     : burni.matias
+-->
+
+<div style="-rave-layout: grid; " xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="agregarEmpleado">
+        <table class="abm" width="100%">
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Nombre (*)"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputNombre" styleClass="abmInput" required="true"
+                                   value="#{agregarEmpleado.empleado.nombre}">
+                        <f:validateLength minimum="3" maximum="100" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputNombre" id="mNombre" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Apellido (*)"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputApellido" styleClass="abmInput" required="true"
+                                   value="#{agregarEmpleado.empleado.apellido}">
+                        <f:validateLength minimum="2" maximum="100" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputApellido" id="mApellido" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Email (*)"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputEmail" styleClass="abmInput"
+                    value="#{agregarEmpleado.empleado.email}">
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:inputText id ="emailDefault" rendered="false"/>
+                        <ice:message for="emailDefault" id="memailDefault" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Estado"/>
+                </td>
+                <td>
+                    <ice:selectOneMenu value="#{agregarEmpleado.empleado.estado.numero}" id="EstadoCombo" title="estado" styleClass="abmInput">
+                        <f:selectItems  value="#{Empleados.estadosEmpleado}" />
+                    </ice:selectOneMenu>
+                </td>
+                <td class="extension">
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Cargo"/>
+                </td>
+                <td>
+                    <ice:selectOneMenu value="#{agregarEmpleado.empleado.cargo.idCargo}" id="CargoCombo" title="cargo" styleClass="abmInput">
+                        <f:selectItems  value="#{Empleados.cargos}" />
+                    </ice:selectOneMenu>
+                </td>
+                <td class="extension">
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Observaciones"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputObservaciones" styleClass="abmInput"
+                                   value="#{agregarEmpleado.empleado.observaciones}">
+                        <f:validateLength maximum="2500"/>
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Usuario (*)"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputUsuario" styleClass="abmInput"
+                    value="#{agregarEmpleado.empleado.usuario}" required="true">
+                                       <f:validateLength minimum="3" maximum="45" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputUsuario" id="mUsuario" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:inputText id ="usuarioDefault" rendered="false"/>
+                        <ice:message for="usuarioDefault" id="musuarioDefault" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Password (*)"/>
+                </td>
+                <td>
+                    <ice:inputSecret id="inputPassword" styleClass="abmInput"
+                    value="#{agregarEmpleado.empleado.password}" required="true">
+                        <f:validateLength minimum="5" maximum="45" />
+                    </ice:inputSecret>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputPassword" id="mPassword" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="aceptar">
+                    <ice:commandButton id="aceptar" value="Aceptar" action="#{agregarEmpleado.actionAceptar}" type="submit" image="/resources/icons/buttons/nuevo.png" />
+                </td>
+                <td>
+                    <ice:commandButton immediate="true" id="cancelar" value="Cancelar" action="#{agregarEmpleado.actionCancelar}" type="submit" image="/resources/icons/buttons/Cancelar.png" />
+                </td>
+            </tr>
+        </table>
+    </f:subview>
+</div>

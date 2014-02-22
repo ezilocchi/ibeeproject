@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : modificarCajon
+    Created on : 26-ago-2009, 18:39:31
+    Author     : farias.facundo
+-->
+
+<div style="-rave-layout: grid; " xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="modificarCajon">
+        <table class="abm" width="100%">
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Descripci&#243;n (*)"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputDescripCajon" required="true" styleClass="abmInput" value="#{modificarCajon.cajon.descripcion}" partialSubmit="true">
+                        <f:validateLength minimum="3" maximum="100" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputDescripCajon" id="mDesc" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Tipo Caj&#243;n (*)"/>
+                </td>
+                <td>
+                    <ice:selectOneMenu id="tipoCajon" value="#{modificarCajon.cajon.tipoCajon.idTipoCajon}" title="Tipo Cajón" styleClass="abmInput">
+                        <f:selectItems value="#{Cajones.tiposCajon}" />
+                    </ice:selectOneMenu>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="tipoCajon" id="mtipoCajon" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Empleado de Fabricaci&#243;n (*)"/>
+                </td>
+                <td>
+                    <ice:selectOneMenu id="empleado" value="#{modificarCajon.cajon.empleado.legajo}" title="Legajo" styleClass="abmInput">
+                        <f:selectItems value="#{Cajones.empleados}" />
+                    </ice:selectOneMenu>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="empleado" id="mEmpleado" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Fecha de Fabricaci&#243;n (*)"/>
+                </td>
+                <td>
+                    <ice:selectInputDate id="fecha" value="#{modificarCajon.cajon.fechaFabricacion}" highlightUnit="DAY_OF_YEAR" highlightValue="1" renderAsPopup="true">
+                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                    </ice:selectInputDate>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="fecha" id="mFecha" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Cantidad de Alzas (*)"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputCantAlzas" styleClass="abmInput" value="#{modificarCajon.cajon.cantidadAlzas}" required="true">
+                        <f:validateLength maximum="15" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputCantAlzas" id="minputCantAlzas" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Marcos por Alzas (*)"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputMarcosAlzas" styleClass="abmInput" value="#{modificarCajon.cajon.marcosPorAlza}" required="true">
+                        <f:validateLength maximum="15" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputMarcosAlzas" id="minputMarcosAlzas" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Observaciones"/>
+                </td>
+                <td>
+                    <ice:inputTextarea id="inputObs" styleClass="abmInput" value="#{modificarCajon.cajon.observaciones}" partialSubmit="true">
+                        <f:validateLength maximum="500" />
+                    </ice:inputTextarea>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputObs" id="mObs" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="aceptar">
+                    <ice:commandButton id="aceptar" value="Aceptar" action="#{modificarCajon.actionAceptar}" image="/resources/icons/buttons/editar.png" />
+                </td>
+                <td>
+                    <ice:commandButton immediate="true" id="cancelar" value="Cancelar" action="#{modificarCajon.actionCancelar}" image="/resources/icons/buttons/Cancelar.png" />
+                </td>
+            </tr>
+        </table>
+    </f:subview>
+</div>

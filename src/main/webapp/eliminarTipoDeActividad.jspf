@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : eliminarTipoDeActividad
+    Created on : 18-sep-2009, 21:37:36
+    Author     : farias.facundo
+-->
+<div style="-rave-layout: grid; " xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <f:subview id="eliminarTipoDeActividad">
+        <table class="abm" width="100%">
+            <tr>
+                <td class="title">
+                    <ice:outputText value="C&#243;digo"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputCod" required="true" styleClass="abmInput" readonly="true"
+                                   value="#{eliminarTipoDeActividad.tipoDeActividad.codigo}">
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputCod" id="mCod" style="color:red; line-height:200%; background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px; padding-left:15px;"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Denominaci&#243;n"/>
+                </td>
+                <td>
+                    <ice:inputText id="inputDenomTpoAct" required="true" styleClass="abmInput" readonly="true"
+                                   value="#{eliminarTipoDeActividad.tipoDeActividad.denominacion}" >
+                        <f:validateLength minimum="5" maximum="100" />
+                    </ice:inputText>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputDenomTpoAct" id="mDenom" style="color:red; line-height:200%; background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px; padding-left:15px;"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Descripci&#243;n"/>
+                </td>
+                <td>
+                    <ice:inputTextarea id="inputDesc" styleClass="abmInput" readonly="true"
+                                       value="#{eliminarTipoDeActividad.tipoDeActividad.descripcion}">
+                    </ice:inputTextarea>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="inputDesc" id="mDesc" style="color:red; line-height:200%; background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px; padding-left:15px;"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Permitido para el Cargo"/>
+                </td>
+                <td>
+                    <ice:inputText value="#{TiposDeActividad.cargos[eliminarTipoDeActividad.tipoDeActividad.cargo.idCargo-1].label}" id="Cargos" title="Cargos" styleClass="abmInput"
+                                   readonly="true" />
+                </td>
+                <td class="extension">
+                </td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="Cargos" id="mVal" style="color:red; line-height:200%; background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px; padding-left:15px;"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Tipos de Tarea relacionados "/>
+                </td>
+                <td>
+                    <ice:panelSeries value="#{eliminarTipoDeActividad.tipoDeActividad.tipoTareas}" var="tipos">
+                        <ice:panelGrid width="100%" styleClass="customBorder">
+                            <ice:column id="atributos">
+                                <ice:panelGroup>
+                                    <tr>
+                                        <td>
+                                            <table width="100%">
+                                                <tr>
+                                                    <td style="width: 28%;"><ice:outputText value="C&#243;digo de Tipo de Tarea"/></td>
+                                                    <td>
+                                                        <ice:inputText id="codTar" value="#{tipos.codigo}" styleClass="abmInput" readonly="true"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 28%;"><ice:outputText value="Denominaci&#243;n"/></td>
+                                                    <td>
+                                                    <ice:inputText id="denTar" value="#{tipos.denominacion}" styleClass="abmInput" readonly="true"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 28%;"><ice:outputText value="Descripci&#243;n"/></td>
+                                                    <td><ice:inputText value="#{tipos.descripcion}" styleClass="abmInput" readonly="true"/></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </ice:panelGroup>
+                                <tr>
+                                    <td>
+                                        <ice:panelGroup>
+                                            <ice:outputText value="Datos que seran requeridos en el tipo de tarea: "/><br/><br/>
+                                            <table>
+                                                <tr>
+                                                    <td><ice:outputText value="Acceso a Zonas: "/></td>
+                                                    <td><ice:selectBooleanCheckbox value="#{tipos.usaZona}" styleClass="checks" disabled="true"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><ice:outputText value="Acceso a Layouts: "/></td>
+                                                    <td><ice:selectBooleanCheckbox value="#{tipos.usaLayout}" styleClass="checks" disabled="true"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><ice:outputText value="Acceso a Apiares: "/></td>
+                                                    <td><ice:selectBooleanCheckbox value="#{tipos.usaApiar}" styleClass="checks" disabled="true"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><ice:outputText value="Acceso a Colmenas: "/></td>
+                                                    <td><ice:selectBooleanCheckbox value="#{tipos.usaColmena}" styleClass="checks" disabled="true"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><ice:outputText value="Acceso a Familias: "/></td>
+                                                    <td><ice:selectBooleanCheckbox value="#{tipos.usaFamilia}" styleClass="checks" disabled="true"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><ice:outputText value="Acceso a Cajones: "/></td>
+                                                    <td><ice:selectBooleanCheckbox value="#{tipos.usaCajon}" styleClass="checks" disabled="true"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><ice:outputText value="Acceso a Tratamientos: "/></td>
+                                                    <td><ice:selectBooleanCheckbox value="#{tipos.usaTratamiento}" styleClass="checks" disabled="true"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><ice:outputText value="Acceso a Enfermedades: "/></td>
+                                                    <td><ice:selectBooleanCheckbox value="#{tipos.usaEnfermedad}" styleClass="checks" disabled="true"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><ice:outputText value="Acceso a Sintomas: "/></td>
+                                                    <td><ice:selectBooleanCheckbox value="#{tipos.usaSintoma}" styleClass="checks" disabled="true"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><ice:outputText value="Acceso a Alarmas: "/></td>
+                                                    <td><ice:selectBooleanCheckbox value="#{tipos.usaAlarma}" styleClass="checks" disabled="true"/></td>
+                                                </tr>
+                                            </table>
+                                        </ice:panelGroup>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <br/>
+                                    <ice:panelGroup >
+                                        <ice:commandButton id="add1" value="Consultar Datos de Recolecci&#243;n" styleClass="floatLeft buttonSearch" immediate="true"
+                                                           action="#{eliminarTipoDeActividad.consultarDatoRecoleccion}"/>
+                                        <f:param value="#{tipos}" binding="#{eliminarTipoDeActividad.parametro}"/>
+                                    </ice:panelGroup>
+                                </tr>
+                            </ice:column>
+                        </ice:panelGrid>
+                    </ice:panelSeries>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2">
+                    <span class="validator"></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="aceptar">
+                    <ice:commandButton id="aceptar" value="Aceptar" image="/resources/icons/buttons/eliminar.png"
+                                       action="#{eliminarTipoDeActividad.actionAceptar}" />
+                </td>
+                <td>
+                    <ice:commandButton id="cancelar" value="Cancelar" image="/resources/icons/buttons/Cancelar.png"
+                                       action="#{eliminarTipoDeActividad.actionCancelar}" immediate="true" />
+                </td>
+            </tr>
+        </table>
+    </f:subview>
+</div>

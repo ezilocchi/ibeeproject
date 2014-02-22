@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : modificarLayout
+    Created on : 20-sep-2009, 12:23:40
+    Author     : erro.gonzalo
+-->
+
+<div style="-rave-layout: grid" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+  <f:subview id="modificarLayout">
+           <table class="abm" width="100%">
+            <tr>
+                <td class="title">
+                    <ice:outputText id="labelLayout" value="Nro Layout"/>
+                </td>
+                <td>
+                    <ice:inputText id="idLayout" maxlength="100" partialSubmit="true" required="false" size="10" styleClass="abmInput" value="#{modificarLayout.layout.idLayout}" disabled="true" />
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="idLayout" id="mDenom" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+
+            </tr>
+            <tr>
+                <td class="title">
+                   <ice:outputText value="Denominaci&#243;n (*)"/>
+                </td>
+                <td>
+                    <ice:inputText id="denominacion2"  partialSubmit="true" required="true" styleClass="abmInput" value="#{modificarLayout.layout.denominacion}" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="denominacion2" id="deno" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Dise&#241;o (*)"/>
+                </td>
+                <td>
+                    <ice:inputText id="disenio"  partialSubmit="true" required="true" styleClass="abmInput" value="#{modificarLayout.layout.disenio}" />
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Fecha Creaci&#243;n"/>
+                </td>
+                <td>
+
+                    <ice:selectInputDate id="fechaCreacion"  value="#{modificarLayout.layout.fechaCreacion}" highlightUnit="DAY_OF_YEAR" highlightValue="1"  renderAsPopup="true" required="true">
+                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                    </ice:selectInputDate>
+                </td>
+                <td class="extension"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="fechaCreacion" id="fechaA2" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Dimesiones"/>
+                    <td>
+                        <ice:panelGrid columns="3" styleClass="abm">
+                            <td>
+                                <ice:outputText value="Largo"/>
+                                <ice:inputText id="largo" styleClass="abmInput" maxlength="1" value="#{modificarLayout.layout.largo}" required="true"/>
+                            </td>
+                            <td>
+                                <ice:outputText value="Ancho"/>
+                                <ice:inputText id="ancho" styleClass="abmInput" maxlength="1" value="#{modificarLayout.layout.ancho}" required="true"/>
+                            </td>
+                        </ice:panelGrid>
+                    </td>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span class="validator">
+                        <ice:message for="largo" id="lat2" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                    <span class="validator">
+                        <ice:message for="ancho" id="long2" style="color:red; line-height:200%;background: url( 'xmlhttp/css/rime/css-images/bullet.gif' ) no-repeat 0 3px;padding-left:15px"/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Observaciones"/>
+                </td>
+                <td>
+                    <ice:inputText id="observaciones"  partialSubmit="true" styleClass="abmInput" value="#{modificarLayout.layout.observaciones}" />
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <ice:outputText value="Ventajas"/>
+                </td>
+                <td>
+                    <ice:inputText id="ventajas"  partialSubmit="true" styleClass="abmInput" value="#{modificarLayout.layout.ventajas}" />
+                </td>
+            </tr>
+            <tr>
+                <td class="aceptar">
+                    <ice:commandButton action="#{modificarLayout.setearPosicion}" id="actualizar" type="submit" value="Actualizar" styleClass="buttonEdit" />
+                </td>
+                <td>
+                    <ice:panelGrid styleClass="abm" binding="#{modificarLayout.panelGrid}"/>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="aceptar">
+                    <ice:commandButton action="#{modificarLayout.action_modificar}" id="aceptar" type="submit" value="Modificar" image="/resources/icons/buttons/editar.png" />
+                </td>
+                <td>
+                    <ice:commandButton  immediate="true" action="#{modificarLayout.actionCancelar}" id="cancelar" type="submit" value="Cancelar" image="/resources/icons/buttons/Cancelar.png" />
+                </td>
+            </tr>
+        </table>
+  </f:subview>
+</div>

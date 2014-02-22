@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : styles
+    Created on : 27-jun-2009, 17:00:06
+    Author     : farias.facundo 
+-->
+
+<div style="-rave-layout: grid; width: 400px; height: 200px" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component" >
+  <f:subview id="styles">
+      <ice:outputStyle href="/resources/emx_nav_right.css" id="outputStyle3"/>
+      <ice:outputStyle href="/resources/rime/rime.css" id="outputStyle"/>
+      <link rel="shortcut icon" href="/resources/iBee_Icon.ico" type="image/x-icon" />
+  </f:subview>
+</div>
